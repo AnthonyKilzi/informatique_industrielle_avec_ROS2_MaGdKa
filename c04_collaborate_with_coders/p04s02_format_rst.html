@@ -60,9 +60,14 @@
 <li class="toctree-l2"><a class="reference internal" href="p04s01_format_your_code.html">Formater automatiquement le code</a></li>
 <li class="toctree-l2"><a class="reference internal" href="p04s01_format_your_code.html#conventions-de-codage">Conventions de codage</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Formatter automatiquement la documentation RestructuredText (RST)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#installation-de-restructuredtext-lint">Installation de restructuredtext-lint</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#utilisation-de-restructuredtext-lint">Utilisation de restructuredtext-lint</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#explications">Explications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">restructuredtext-lint</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#installation-de-restructuredtext-lint">Installation de restructuredtext-lint</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#utilisation-de-restructuredtext-lint">Utilisation de restructuredtext-lint</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">rstfmt</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#installation-de-rstfmt">Installation de rstfmt</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#utilisation-de-rstfmt-en-ligne-de-commande">Utilisation de rstfmt en ligne de commande</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#utilisation-dans-l-editeur-de-code">Utilisation dans l’éditeur de code</a><ul>
@@ -110,10 +115,26 @@
              
   <section id="formatter-automatiquement-la-documentation-restructuredtext-rst">
 <h1>Formatter automatiquement la documentation RestructuredText (RST)<a class="headerlink" href="#formatter-automatiquement-la-documentation-restructuredtext-rst" title="Lien vers cette rubrique"></a></h1>
-<p>Pour vérifier l’écriture de fichiers RST, il est possible d’utiliser le linter <a class="reference external" href="https://github.com/twolfson/restructuredtext-lint">restructuredtext-lint</a></p>
+<p>Pour vérifier l’écriture de fichiers RST, il est possible d’utiliser des linters</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p><a class="reference external" href="https://github.com/twolfson/restructuredtext-lint">restructuredtext-lint</a> qui ne permet que de
+vérifier la syntaxe RST, mais donc permet d’afficher les erreurs de syntaxe RST directement dans
+l’éditeur de code.</p></li>
+<li><p><a class="reference external" href="https://github.com/dzhu/rstfmt">rstfmt</a> qui permet de vérifier la syntaxe RST de sphinx ET de
+formatter automatiquement le code RST.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/LilSpazJoekp/docstrfmt">docstrfmt</a> est un fork récent à surveiller.</p></li>
+</ul>
+</li>
+</ol>
+</div></blockquote>
+<section id="id1">
+<h2>restructuredtext-lint<a class="headerlink" href="#id1" title="Lien vers cette rubrique"></a></h2>
 <section id="installation-de-restructuredtext-lint">
-<h2>Installation de restructuredtext-lint<a class="headerlink" href="#installation-de-restructuredtext-lint" title="Lien vers cette rubrique"></a></h2>
-<p>Activer l’environnement virtuel et installer le linter avec la commande suivante depuis le dossier sphinx du projet:</p>
+<h3>Installation de restructuredtext-lint<a class="headerlink" href="#installation-de-restructuredtext-lint" title="Lien vers cette rubrique"></a></h3>
+<p>Activer l’environnement virtuel et installer le linter avec la commande suivante depuis le dossier sphinx
+du projet:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>~/info_indus/info_indus_tutorial/doc/sphinx
 <span class="nb">source</span><span class="w"> </span>.venv/bin/activate
 pip<span class="w"> </span>install<span class="w"> </span>restructuredtext-lint
@@ -121,8 +142,9 @@ pip<span class="w"> </span>install<span class="w"> </span>restructuredtext-lint
 </div>
 </section>
 <section id="utilisation-de-restructuredtext-lint">
-<h2>Utilisation de restructuredtext-lint<a class="headerlink" href="#utilisation-de-restructuredtext-lint" title="Lien vers cette rubrique"></a></h2>
-<p>Pour vérifier un fichier RST (dont le nom est <cite>bad_format_rst_file.rst</cite>), il suffit de lancer la commande suivante:</p>
+<h3>Utilisation de restructuredtext-lint<a class="headerlink" href="#utilisation-de-restructuredtext-lint" title="Lien vers cette rubrique"></a></h3>
+<p>Pour vérifier un fichier RST (dont le nom est <cite>bad_format_rst_file.rst</cite>), il suffit de lancer la commande
+suivante:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rst-lint<span class="w"> </span>bad_format_rst_file.rst
 </pre></div>
 </div>
@@ -138,8 +160,42 @@ pip<span class="w"> </span>install<span class="w"> </span>restructuredtext-lint
 </pre></div>
 </div>
 <section id="explications">
-<h3>Explications<a class="headerlink" href="#explications" title="Lien vers cette rubrique"></a></h3>
-<p>Il manque, par exemple, un saut de ligne après la directive <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">code-block</span></code> et la ligne python <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">math</span> <span class="pre">as</span> <span class="pre">m</span></code> est comprise comme un paramètre de la directive <code class="docutils literal notranslate"><span class="pre">code-block</span></code> et est donc mal interprétée.</p>
+<h4>Explications<a class="headerlink" href="#explications" title="Lien vers cette rubrique"></a></h4>
+<p>Il manque, par exemple, un saut de ligne après la directive <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">code-block</span></code> et la ligne python
+<code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">math</span> <span class="pre">as</span> <span class="pre">m</span></code> est comprise comme un paramètre de la directive <code class="docutils literal notranslate"><span class="pre">code-block</span></code> et est donc mal
+interprétée.</p>
+</section>
+</section>
+</section>
+<section id="id2">
+<h2>rstfmt<a class="headerlink" href="#id2" title="Lien vers cette rubrique"></a></h2>
+<section id="installation-de-rstfmt">
+<h3>Installation de rstfmt<a class="headerlink" href="#installation-de-rstfmt" title="Lien vers cette rubrique"></a></h3>
+<p>Activer l’environnement virtuel et installer le linter avec la commande suivante depuis le dossier sphinx du
+projet:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>~/info_indus/info_indus_tutorial/doc/sphinx
+<span class="nb">source</span><span class="w"> </span>.venv/bin/activate
+pip<span class="w"> </span>install<span class="w"> </span>rstfmt
+</pre></div>
+</div>
+</section>
+<section id="utilisation-de-rstfmt-en-ligne-de-commande">
+<h3>Utilisation de rstfmt en ligne de commande<a class="headerlink" href="#utilisation-de-rstfmt-en-ligne-de-commande" title="Lien vers cette rubrique"></a></h3>
+<p>Pour visualiser les erreurs de formatage d’un fichier RST (dont le nom est <cite>bad_format_rst_file.rst</cite>),
+il suffit de lancer la commande suivante:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rstfmt<span class="w"> </span>--diff<span class="w"> </span>&lt;file&gt;
+</pre></div>
+</div>
+<p>Le résultat apparaîtra dans le terminal sous le format d’un fichier diff (comme avec git).
+Pour sauvegarder le résultat dans un fichier, il suffit de rediriger la sortie standard vers un fichier:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rstfmt<span class="w"> </span>--diff<span class="w"> </span>&lt;file&gt;<span class="w"> </span>&gt;<span class="w"> </span>&lt;output_file&gt;
+</pre></div>
+</div>
+<p>Pour formatter un fichier RST <code class="docutils literal notranslate"><span class="pre">en</span> <span class="pre">place</span></code> (dont le nom est <cite>bad_format_rst_file.rst</cite>), il suffit de lancer la commande suivante:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rstfmt<span class="w"> </span>bad_format_rst_file.rst
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">ATTENTION:</span></code> le fichier est modifié directement.</p>
 </section>
 </section>
 <section id="utilisation-dans-l-editeur-de-code">
@@ -165,9 +221,13 @@ L’erreur rapportée n’est pas toujours pertinente, et il est souvent très i
 </section>
 <section id="visualisation-dans-la-vue-problems">
 <h3>Visualisation dans la vue <code class="docutils literal notranslate"><span class="pre">Problems</span></code><a class="headerlink" href="#visualisation-dans-la-vue-problems" title="Lien vers cette rubrique"></a></h3>
-<p>Les erreurs sont également listées dans la vue <code class="docutils literal notranslate"><span class="pre">Problems</span></code> de vscode. On peut y accéder
-#. en cliquant sur l’icône en forme de triangle dans la barre de status de vscode souvent située en bas à gauche de la fenêtre.
-#. en ouvrant la vue de terminal en bas et sélectionnant l’onglet <code class="docutils literal notranslate"><span class="pre">Problems</span></code>.</p>
+<p>Les erreurs sont également listées dans la vue <code class="docutils literal notranslate"><span class="pre">Problems</span></code> de vscode. On peut y accéder</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>en cliquant sur l’icône en forme de triangle dans la barre de status de vscode souvent située en bas à gauche de la fenêtre.</p></li>
+<li><p>en ouvrant la vue de terminal en bas et sélectionnant l’onglet <code class="docutils literal notranslate"><span class="pre">Problems</span></code>.</p></li>
+</ol>
+</div></blockquote>
 <figure class="align-center">
 <img alt="../_images/vscode_rst_linter_02.png" src="../_images/vscode_rst_linter_02.png" />
 </figure>

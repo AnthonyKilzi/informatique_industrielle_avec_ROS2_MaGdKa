@@ -67,7 +67,7 @@ Par exemple:
    :language: text
 
 En exécutant ces commandes dans un terminal de vscode, 
-Il suffit de cliquer sur le lien en maintenant la touche ''Ctrl'' pour ouvrir le fichier de log des tests et voir les erreurs.
+Il suffit de faire un ``click gauche`` avec la souris sur le lien en maintenant appuyée la touche ``Ctrl`` du clavier pour ouvrir le fichier de log des tests et voir les erreurs.
 
 .. note::
 
