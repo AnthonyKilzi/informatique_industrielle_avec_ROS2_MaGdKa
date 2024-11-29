@@ -9,6 +9,13 @@ Pantographe de dessin robotisé avec Raspberry Pi et ROS2
    p50s02_mechanical_description
    p50s03_urdf
 
+.. figure:: resources/img/real_system_photo.png
+   :align: center
+
+=====================
+Description du projet
+=====================
+
 Pour ce travail pratique, vous allez installer une plateforme robotique ROS2 sur un Raspberry Pi (Pi5) et documenter le projet.
 Le projet consiste donc à:
 
