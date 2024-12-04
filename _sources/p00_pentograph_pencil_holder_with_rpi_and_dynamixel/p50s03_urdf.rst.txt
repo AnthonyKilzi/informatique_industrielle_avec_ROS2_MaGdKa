@@ -27,7 +27,6 @@ Extraction des modèles 3D en step
 ==================================
 
 Pour extraire les modèles 3D au format step, vous pouvez utiliser le logiciel freecad.
-
    
    #. :download:`base.stp <resources/cad/base.stp>`
    #. :download:`link1.stp <resources/cad/link1.stp>`
@@ -35,13 +34,17 @@ Pour extraire les modèles 3D au format step, vous pouvez utiliser le logiciel f
    #. :download:`link3.stp <resources/cad/link3.stp>`
    #. :download:`link4.stp <resources/cad/link4.stp>`
 
-
-
 =====================================
 Conversion des modèles 3D en collada
 =====================================
 
-Pour convertir les modèles 3D en collada, nous allons utiliser un programme en python.
+Pour convertir les modèles 3D en collada (dae), vous pouvez utiliser le logiciel freecad.
+   
+   #. :download:`base.dae <resources/cad/base.dae>`
+   #. :download:`link1.dae <resources/cad/link1.dae>`
+   #. :download:`link2.dae <resources/cad/link2.dae>`
+   #. :download:`link3.dae <resources/cad/link3.dae>`
+   #. :download:`link4.dae <resources/cad/link4.dae>`
 
 =========================
 Création du fichier URDF
