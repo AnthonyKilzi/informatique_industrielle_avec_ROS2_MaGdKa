@@ -7,7 +7,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Création d’une première documentation sphinx &mdash; Documentation Cours d&#39;Informatique Industrielle avec ROS2 1.0.0</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -59,7 +59,13 @@
 <li class="toctree-l2"><a class="reference internal" href="p01s03_git.html">Introduction au versionning avec git</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Création d’une première documentation sphinx</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#installer-sphinx">Installer sphinx</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#configurer-la-documentation">Configurer la documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#configurer-la-documentation">Configurer la documentation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#separation-source-build">Séparation source/build</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nom-du-projet">Nom du projet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#examiner-les-fichiers-crees-par-sphinx-quickstart-du-point-de-vue-de-git">Examiner les fichiers créés par sphinx-quickstart du point de vue de git</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#editer-les-fichiers-de-configuration-de-sphinx">Éditer les fichiers de configuration de sphinx</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#creer-la-documentation">Créer la documentation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#sauvegarder-la-documentation-avec-git">Sauvegarder la documentation avec git</a></li>
 </ul>
@@ -142,11 +148,28 @@ pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </s
 sphinx-quickstart<span class="w"> </span>sphinx
 </pre></div>
 </div>
-<p>Répondre aux questions posées par sphinx-quickstart, pour le nom du projet mettez les initiales des personnes de votre groupe suivi de <code class="docutils literal notranslate"><span class="pre">info_indus_tutorial</span></code>. Par exemple, pour le groupe d” Amélie POULAIN, Jean DUPONT et Nikita TESTU, le nom du projet sera <code class="docutils literal notranslate"><span class="pre">PaDjTn_info_indus_tutorial</span></code>.</p>
+<p>Répondre aux questions posées par sphinx-quickstart.</p>
+<section id="separation-source-build">
+<h3>Séparation source/build<a class="headerlink" href="#separation-source-build" title="Lien vers cette rubrique"></a></h3>
+<p>Il est judicieux de séparer les sources du répertoire de build car du point de vue de la sauvegarde et du versionnement du projet avec git, on peut suivre tout ce qui se trouve dans le répertoire <code class="docutils literal notranslate"><span class="pre">source</span></code>.
+On ne versionne en effet pas le répertoire de build, car il contient des éléments générés automatiquement donc qui peuvent être intégralement déduits de tous les autres fichiers versionnés.
+On gagne ainsi beaucoup en quantité de données versionnées, c’est donc un gain de resources de temps de calcul et d’espace mémoire.</p>
+</section>
+<section id="nom-du-projet">
+<h3>Nom du projet<a class="headerlink" href="#nom-du-projet" title="Lien vers cette rubrique"></a></h3>
+<p>Pour le nom du projet, il faut choisir un nom le plus court possible et qui soit aussi représentatif que possible du projet et de son usage.
+Il est courant, par exemple, de préfixer une librairie python avec le préfix <code class="docutils literal notranslate"><span class="pre">py</span></code>.</p>
+<p>Pour ce projet, la règle que nous allons choisir est la suivante: utilisez les initiales des personnes de votre groupe suivi de <code class="docutils literal notranslate"><span class="pre">info_indus_tutorial</span></code>. Par exemple, pour le groupe d” Amélie POULAIN, Jean DUPONT et Nikita TESTU, le nom du projet sera <code class="docutils literal notranslate"><span class="pre">PaDjTn_info_indus_tutorial</span></code>.</p>
+</section>
+<section id="examiner-les-fichiers-crees-par-sphinx-quickstart-du-point-de-vue-de-git">
+<h3>Examiner les fichiers créés par sphinx-quickstart du point de vue de git<a class="headerlink" href="#examiner-les-fichiers-crees-par-sphinx-quickstart-du-point-de-vue-de-git" title="Lien vers cette rubrique"></a></h3>
 <p>Regarder avec git les nouveaux fichiers créés:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>status
 </pre></div>
 </div>
+</section>
+<section id="editer-les-fichiers-de-configuration-de-sphinx">
+<h3>Éditer les fichiers de configuration de sphinx<a class="headerlink" href="#editer-les-fichiers-de-configuration-de-sphinx" title="Lien vers cette rubrique"></a></h3>
 <p>Modifier le fichier <code class="docutils literal notranslate"><span class="pre">conf.py</span></code>:</p>
 <ol class="arabic simple">
 <li><p>mettre-à-jour les extensions,</p></li>
@@ -289,6 +312,7 @@ touch<span class="w"> </span>~/info_indus/info_indus_tutorial/doc/sphinx/source/
 </div>
 </div>
 </section>
+</section>
 <section id="creer-la-documentation">
 <h2>Créer la documentation<a class="headerlink" href="#creer-la-documentation" title="Lien vers cette rubrique"></a></h2>
 <p>Depuis le répertoire <code class="docutils literal notranslate"><span class="pre">sphinx</span></code> faire:</p>
@@ -333,7 +357,7 @@ git<span class="w"> </span>add<span class="w"> </span>Makefile<span class="w"> <
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, Manuel YGUEL.</p>
+    <p>&#169; Droits d'auteur 2024, Manuel YGUEL.</p>
   </div>
 
   Compilé avec <a href="https://www.sphinx-doc.org/">Sphinx</a> en utilisant un

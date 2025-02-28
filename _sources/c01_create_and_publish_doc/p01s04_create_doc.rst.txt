@@ -48,13 +48,38 @@ Initialiser la documentation avec les outils sphinx:
    cd ~/info_indus/info_indus_tutorial/doc
    sphinx-quickstart sphinx
 
-Répondre aux questions posées par sphinx-quickstart, pour le nom du projet mettez les initiales des personnes de votre groupe suivi de ``info_indus_tutorial``. Par exemple, pour le groupe d' Amélie POULAIN, Jean DUPONT et Nikita TESTU, le nom du projet sera ``PaDjTn_info_indus_tutorial``.
+Répondre aux questions posées par sphinx-quickstart.
+
+------------------------
+Séparation source/build
+------------------------
+Il est judicieux de séparer les sources du répertoire de build car du point de vue de la sauvegarde et du versionnement du projet avec git, on peut suivre tout ce qui se trouve dans le répertoire ``source``.
+On ne versionne en effet pas le répertoire de build, car il contient des éléments générés automatiquement donc qui peuvent être intégralement déduits de tous les autres fichiers versionnés.
+On gagne ainsi beaucoup en quantité de données versionnées, c'est donc un gain de resources de temps de calcul et d'espace mémoire. 
+
+--------------
+Nom du projet
+--------------
+Pour le nom du projet, il faut choisir un nom le plus court possible et qui soit aussi représentatif que possible du projet et de son usage.
+Il est courant, par exemple, de préfixer une librairie python avec le préfix ``py``.
+
+Pour ce projet, la règle que nous allons choisir est la suivante: utilisez les initiales des personnes de votre groupe suivi de ``info_indus_tutorial``. Par exemple, pour le groupe d' Amélie POULAIN, Jean DUPONT et Nikita TESTU, le nom du projet sera ``PaDjTn_info_indus_tutorial``.
+
+-------------------------------------------------------------------------
+Examiner les fichiers créés par sphinx-quickstart du point de vue de git
+-------------------------------------------------------------------------
 
 Regarder avec git les nouveaux fichiers créés:
 
 .. code-block:: bash
 
    git status
+
+
+
+-----------------------------------------------
+Éditer les fichiers de configuration de sphinx
+-----------------------------------------------
 
 Modifier le fichier ``conf.py``:
 

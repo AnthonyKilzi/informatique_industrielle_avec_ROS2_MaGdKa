@@ -70,7 +70,7 @@ Les options de ce fichier permettent:
 - de laisser les fichiers consultés ouverts dans l'éditeur quand ils ont été ouverts par des actions de preview (ligne 12), comme par exemple pour consulter une ligne liée à une erreur dans un log ou un processus de compilation. Cela permet d'avoir en simultané le fichier de log ou d'erreur et le fichier de code ouvert dans l'éditeur.
 
 
-Vous allez ouvrir le fichier ``keybindings.json`` (situé dans votre dossier home ``~/.config/Code/User``) avec le contenu suivant:
+Vous allez ouvrir le fichier ``keybindings.json`` (situé dans votre dossier home ``~/.config/Code/User``) et le remplir avec le contenu suivant:
 
 .. literalinclude:: resources/code/config.vscode/keybindings.json
    :language: json
