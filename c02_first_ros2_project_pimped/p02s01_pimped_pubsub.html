@@ -108,7 +108,7 @@ mkdir<span class="w"> </span>-p<span class="w"> </span>ros2_ws/src
 </div>
 <p>Nous allons maintenant utiliser un package ROS2 que nous allons installer dans le répertoire <code class="docutils literal notranslate"><span class="pre">src</span></code> de votre workspace ROS2.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>~/info_indus/ros2_ws/src
-git<span class="w"> </span>clone<span class="w"> </span>https://github.com/yguel/scara_tutorial_ros2.git
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/ICube-Robotics/ecat_ros2_workshop
 </pre></div>
 </div>
 <p>Afin d’accélerer les processus de compilation et d’exécution, nous allons utiliser des macros bash qui facilitent la tâche quand on utilise la suite d’outils ROS2 centrée sur <code class="docutils literal notranslate"><span class="pre">colcon</span></code>.</p>
@@ -224,7 +224,7 @@ git<span class="w"> </span>clone<span class="w"> </span>https://github.com/yguel
 <p>Nous allons maintenant compiler le package <code class="docutils literal notranslate"><span class="pre">scara_tutorial_ros2</span></code> que nous venons de cloner à l’aide des macros bash que nous venons de définir.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>~/info_indus/ros2_ws
 sudo<span class="w"> </span>apt-get<span class="w"> </span>update
-ros2_humble
+ros2_jazzy
 ros2_build
 </pre></div>
 </div>
@@ -246,7 +246,7 @@ Summary:<span class="w"> </span><span class="m">5</span><span class="w"> </span>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p><code class="docutils literal notranslate"><span class="pre">ros2_humble</span></code> est un alias qui charge l’environnement ROS2 de la distribution humble.
+<p><code class="docutils literal notranslate"><span class="pre">ros2_jazzy</span></code> est un alias qui charge l’environnement ROS2 de la distribution jazzy.
 <code class="docutils literal notranslate"><span class="pre">ros2_build</span></code> est un alias qui installe les dépendences et compile tout le workspace ROS2 courant.</p>
 </div>
 <section id="extension-vscode-pour-ros2">
@@ -262,8 +262,8 @@ Summary:<span class="w"> </span><span class="m">5</span><span class="w"> </span>
 <h2>Créer la description URDF physique d’un robot<a class="headerlink" href="#creer-la-description-urdf-physique-d-un-robot" title="Lien vers cette rubrique"></a></h2>
 <p>Pour créer la description URDF physique d’un robot, suivez dans l’ordre:</p>
 <ol class="arabic simple">
-<li><p><a class="reference external" href="https://github.com/yguel/scara_tutorial_ros2/blob/main/resources/urdf_tutorial.md">tutoriel URDF</a></p></li>
-<li><p><a class="reference external" href="https://github.com/yguel/scara_tutorial_ros2/blob/main/resources/launch_tutorial.md">Comment lancer et intéragir avec le système courant</a></p></li>
+<li><p><a class="reference external" href="https://icube-robotics.github.io/ecat_ros2_workshop/tutorials/urdf_tutorial/">tutoriel URDF</a></p></li>
+<li><p><a class="reference external" href="https://icube-robotics.github.io/ecat_ros2_workshop/">Comment lancer et intéragir avec le système courant</a></p></li>
 </ol>
 </section>
 <section id="creer-un-projet-ros2-c-publisher-subscriber">
