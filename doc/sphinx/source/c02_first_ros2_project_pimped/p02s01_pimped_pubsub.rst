@@ -14,7 +14,7 @@ Nous allons maintenant utiliser un package ROS2 que nous allons installer dans l
 .. code-block:: bash
 
    cd ~/info_indus/ros2_ws/src
-   git clone https://github.com/yguel/scara_tutorial_ros2.git
+   git clone https://github.com/ICube-Robotics/ecat_ros2_workshop
 
 Afin d'accélerer les processus de compilation et d'exécution, nous allons utiliser des macros bash qui facilitent la tâche quand on utilise la suite d'outils ROS2 centrée sur ``colcon``.
 
@@ -51,7 +51,7 @@ Nous allons maintenant compiler le package ``scara_tutorial_ros2`` que nous veno
 
    cd ~/info_indus/ros2_ws
    sudo apt-get update
-   ros2_humble
+   ros2_jazzy
    ros2_build
 
 Si tout s'est bien passé, vous devriez voir un message de succès à la fin de la compilation.
@@ -75,7 +75,7 @@ Si tout s'est bien passé, vous devriez voir un message de succès à la fin de 
 
 .. note::
 
-   ``ros2_humble`` est un alias qui charge l'environnement ROS2 de la distribution humble.
+   ``ros2_jazzy`` est un alias qui charge l'environnement ROS2 de la distribution jazzy.
    ``ros2_build`` est un alias qui installe les dépendences et compile tout le workspace ROS2 courant.
 
 ===========================
@@ -95,8 +95,8 @@ Créer la description URDF physique d'un robot
 
 Pour créer la description URDF physique d'un robot, suivez dans l'ordre:
 
-#. `tutoriel URDF <https://github.com/yguel/scara_tutorial_ros2/blob/main/resources/urdf_tutorial.md>`_
-#. `Comment lancer et intéragir avec le système courant <https://github.com/yguel/scara_tutorial_ros2/blob/main/resources/launch_tutorial.md>`_
+#. `tutoriel URDF <https://icube-robotics.github.io/ecat_ros2_workshop/tutorials/urdf_tutorial/>`_
+#. `Comment lancer et intéragir avec le système courant <https://icube-robotics.github.io/ecat_ros2_workshop/>`_
 
 ===============================================
 Créer un projet ROS2 c++ publisher-subscriber
