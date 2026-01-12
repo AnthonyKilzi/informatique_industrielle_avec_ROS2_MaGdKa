@@ -67,21 +67,12 @@ SSD Adata Legend 700 (`Adata Legend 700 datasheet <https://www.adata.com/en/cons
 
 Le pantographe est articulé par des servomoteurs Dynamixel AX-12A permettant un retour d'information précis. (`AX-12A Dynamixel datasheet <https://emanual.robotis.com/docs/en/dxl/ax/ax-12a/>`_)
 
-+--------------------------+----------------------------------------------------------+
-| Caractéristique          | Spécification                                            |
-+==========================+==========================================================+
-| **Couple à l'arrêt** | 1.5 N.m (à 12V, 1.5A)                                    |
-+--------------------------+----------------------------------------------------------+
-| **Vitesse à vide** | 59 tr/min (à 12V)                                        |
-+--------------------------+----------------------------------------------------------+
-| **Angle de rotation** | 0° à 300° (ou rotation continue)                         |
-+--------------------------+----------------------------------------------------------+
-| **Résolution** | 0.29°                                                    |
-+--------------------------+----------------------------------------------------------+
-| **Tension d'entrée** | 9V à 12V (Recommandé : 11.1V / 12V)                      |
-+--------------------------+----------------------------------------------------------+
-| **Communication** | Bus TTL Multi-drop (Série asynchrone half-duplex)        |
-+--------------------------+----------------------------------------------------------+
-| **Retour d'information** | Position, Température, Charge, Tension                   |
-+--------------------------+----------------------------------------------------------+
+* **Couple à l'arrêt** : 1.5 N.m (à 12V, 1.5A)
+* **Vitesse à vide** : 59 tr/min (à 12V)
+* **Angle de rotation** : 0° à 300° (ou rotation continue)
+* **Résolution** : 0.29°
+* **Tension d'entrée** : 9V à 12V (Recommandé : 11.1V / 12V)
+* **Communication** : Bus TTL Multi-drop (Série asynchrone half-duplex)
+* **Retour d'information** : Position, température, charge et tension d'entrée
+* **Matériau** : Engrenages et boîtier en plastique technique haute résistance
 
