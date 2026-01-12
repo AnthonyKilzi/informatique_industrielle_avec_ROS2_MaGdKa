@@ -66,14 +66,11 @@
 <li class="toctree-l2"><a class="reference internal" href="p50s03_urdf.html">Génération de la description URDF du pantographe</a></li>
 <li class="toctree-l2"><a class="reference internal" href="p50s04_ROS2.html">Installation de ROS2 sur la Rasberry Pi 5</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Installation d’Ubuntu sur la Raspberry Pi 5</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#materiel-requis">Matériel requis</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#telechargement-de-loutil-dinstallation">Téléchargement de l’outil d’installation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#flash-de-limage-ubuntu">Flash de l’image Ubuntu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installation-de-raspberry-pi-imager">Installation de Raspberry Pi Imager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#choix-de-limage-ubuntu">Choix de l’image Ubuntu</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#premier-demarrage">Premier démarrage</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#configuration-initiale">Configuration initiale</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#configuration-du-reseau-optionnel">Configuration du réseau (optionnel)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#activation-de-lacces-ssh-optionnel">Activation de l’accès SSH (optionnel)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#conclusion">Conclusion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tentative-de-partitionnement-de-la-carte-micro-sd">Tentative de partitionnement de la carte micro-SD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reference">Référence</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="p50s00_index.html#description-du-projet">Description du projet</a></li>
@@ -109,119 +106,71 @@
              
   <section id="installation-dubuntu-sur-la-raspberry-pi-5">
 <h1>Installation d’Ubuntu sur la Raspberry Pi 5<a class="headerlink" href="#installation-dubuntu-sur-la-raspberry-pi-5" title="Lien vers cette rubrique"></a></h1>
-<p>Cette section décrit les étapes nécessaires pour installer
-<strong>Ubuntu 22.04 LTS (64 bits)</strong> sur une <strong>Raspberry Pi 5</strong>,
-en vue de l’utilisation de <strong>ROS 2 Humble</strong>.</p>
+<p>Cette section décrit la procédure d’installation du système
+d’exploitation <strong>Ubuntu</strong> sur une <strong>Raspberry Pi 5</strong>.</p>
+<p>Dans notre cas, nous disposons d’une <strong>carte micro-SD</strong> initialement
+configurée avec <strong>Raspberry Pi OS</strong>, qui sera utilisée pour installer
+Ubuntu.
+Du matériel informatique classique (écran, clavier et souris) est
+également nécessaire afin d’interagir avec la Raspberry Pi lors de
+l’installation.</p>
 <p>—</p>
-<section id="materiel-requis">
-<h2>Matériel requis<a class="headerlink" href="#materiel-requis" title="Lien vers cette rubrique"></a></h2>
-<ul class="simple">
-<li><p>Raspberry Pi 5</p></li>
-<li><p>Carte micro-SD (32 Go minimum recommandé)</p></li>
-<li><p>Lecteur de carte SD</p></li>
-<li><p>Alimentation USB-C (5 V – 5 A recommandé)</p></li>
-<li><p>Clavier, souris, écran (ou accès SSH)</p></li>
-<li><p>Connexion Internet</p></li>
-</ul>
-<p>—</p>
-</section>
-<section id="telechargement-de-loutil-dinstallation">
-<h2>Téléchargement de l’outil d’installation<a class="headerlink" href="#telechargement-de-loutil-dinstallation" title="Lien vers cette rubrique"></a></h2>
-<p>L’outil recommandé est <strong>Raspberry Pi Imager</strong>.</p>
-<p>Installation sur Ubuntu :</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>update
-sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>rpi-imager
+<section id="installation-de-raspberry-pi-imager">
+<h2>Installation de Raspberry Pi Imager<a class="headerlink" href="#installation-de-raspberry-pi-imager" title="Lien vers cette rubrique"></a></h2>
+<p>L’outil <strong>Raspberry Pi Imager</strong> est utilisé pour flasher l’image
+d’Ubuntu sur la carte micro-SD.</p>
+<p>Puisque l’installation est réalisée depuis <strong>Raspberry Pi OS</strong>, la
+commande suivante permet d’installer et de lancer l’outil :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>rpi-imager
+rpi-imager
 </pre></div>
 </div>
 <p>—</p>
 </section>
-<section id="flash-de-limage-ubuntu">
-<h2>Flash de l’image Ubuntu<a class="headerlink" href="#flash-de-limage-ubuntu" title="Lien vers cette rubrique"></a></h2>
-<ol class="arabic simple">
-<li><p>Lancer l’outil :</p></li>
-</ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rpi-imager
-</pre></div>
-</div>
-<ol class="arabic simple" start="2">
-<li><p>Sélectionner :</p>
+<section id="choix-de-limage-ubuntu">
+<h2>Choix de l’image Ubuntu<a class="headerlink" href="#choix-de-limage-ubuntu" title="Lien vers cette rubrique"></a></h2>
+<p>Une fois Raspberry Pi Imager lancé, les éléments suivants doivent être
+sélectionnés :</p>
 <ul class="simple">
-<li><p><strong>OS</strong> → <em>Other general-purpose OS</em></p></li>
-<li><p><strong>Ubuntu</strong></p></li>
-<li><p><strong>Ubuntu Server 22.04 LTS (64-bit)</strong></p></li>
+<li><p>Le modèle de carte : <strong>Raspberry Pi 5</strong></p></li>
+<li><p>Le système d’exploitation : <strong>Ubuntu 24.04</strong></p></li>
+<li><p>Le périphérique de stockage : <strong>carte micro-SD (par défaut)</strong></p></li>
 </ul>
-</li>
-<li><p>Sélectionner la carte micro-SD</p></li>
-<li><p>Cliquer sur <strong>Write</strong></p></li>
-<li><p>Attendre la fin du flash</p></li>
-</ol>
+<p>Après validation, le logiciel procède au téléchargement et à
+l’écriture de l’image sur la carte micro-SD.
+La durée de cette étape dépend principalement de la vitesse de la
+connexion Internet.</p>
 <p>—</p>
 </section>
 <section id="premier-demarrage">
 <h2>Premier démarrage<a class="headerlink" href="#premier-demarrage" title="Lien vers cette rubrique"></a></h2>
-<ol class="arabic simple">
-<li><p>Insérer la carte micro-SD dans la Raspberry Pi 5</p></li>
-<li><p>Connecter :
-- alimentation
-- écran
-- clavier</p></li>
-<li><p>Démarrer la carte</p></li>
-</ol>
-<p>Identifiants par défaut :</p>
+<p>Une fois l’écriture terminée, la Raspberry Pi doit être redémarrée.
+Le système démarre alors automatiquement sous <strong>Ubuntu</strong>.</p>
+<p>—</p>
+</section>
+<section id="tentative-de-partitionnement-de-la-carte-micro-sd">
+<h2>Tentative de partitionnement de la carte micro-SD<a class="headerlink" href="#tentative-de-partitionnement-de-la-carte-micro-sd" title="Lien vers cette rubrique"></a></h2>
+<p>Afin de permettre à chaque groupe de travail d’effectuer ses propres
+manipulations, une tentative de partitionnement de la carte micro-SD a
+été réalisée à l’aide de l’outil <strong>GParted</strong>.</p>
+<p>Installation et lancement de GParted :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>gparted
+sudo<span class="w"> </span>gparted
+</pre></div>
+</div>
+<p>Toutefois, après plusieurs essais, cette méthode de partitionnement ne
+s’est pas révélée fonctionnelle et n’a pas été retenue pour la suite
+du projet.</p>
+<p>—</p>
+</section>
+<section id="reference">
+<h2>Référence<a class="headerlink" href="#reference" title="Lien vers cette rubrique"></a></h2>
+<p>Pour plus de détails concernant l’installation des systèmes
+d’exploitation sur Raspberry Pi, se référer à la documentation
+officielle :</p>
 <ul class="simple">
-<li><p><strong>Utilisateur</strong> : ubuntu</p></li>
-<li><p><strong>Mot de passe</strong> : ubuntu</p></li>
+<li><p><a class="reference external" href="https://www.raspberrypi.com/documentation/computers/getting-started.html#raspberry-pi-imager">https://www.raspberrypi.com/documentation/computers/getting-started.html#raspberry-pi-imager</a></p></li>
 </ul>
-<p>⚠️ Le système demandera de changer le mot de passe au premier login.</p>
-<p>—</p>
-</section>
-<section id="configuration-initiale">
-<h2>Configuration initiale<a class="headerlink" href="#configuration-initiale" title="Lien vers cette rubrique"></a></h2>
-<p>Mise à jour du système :</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>update
-sudo<span class="w"> </span>apt<span class="w"> </span>upgrade<span class="w"> </span>-y
-</pre></div>
-</div>
-<p>Configuration du fuseau horaire :</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>timedatectl<span class="w"> </span>set-timezone<span class="w"> </span>Europe/Paris
-</pre></div>
-</div>
-<p>Vérification de la version d’Ubuntu :</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>lsb_release<span class="w"> </span>-a
-</pre></div>
-</div>
-<p>—</p>
-</section>
-<section id="configuration-du-reseau-optionnel">
-<h2>Configuration du réseau (optionnel)<a class="headerlink" href="#configuration-du-reseau-optionnel" title="Lien vers cette rubrique"></a></h2>
-<p>Vérifier la connexion réseau :</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ip<span class="w"> </span>a
-</pre></div>
-</div>
-<p>Tester l’accès Internet :</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ping<span class="w"> </span>-c<span class="w"> </span><span class="m">3</span><span class="w"> </span>google.com
-</pre></div>
-</div>
-<p>—</p>
-</section>
-<section id="activation-de-lacces-ssh-optionnel">
-<h2>Activation de l’accès SSH (optionnel)<a class="headerlink" href="#activation-de-lacces-ssh-optionnel" title="Lien vers cette rubrique"></a></h2>
-<p>Installer le serveur SSH :</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>openssh-server
-</pre></div>
-</div>
-<p>Vérifier le statut :</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>systemctl<span class="w"> </span>status<span class="w"> </span>ssh
-</pre></div>
-</div>
-<p>—</p>
-</section>
-<section id="conclusion">
-<h2>Conclusion<a class="headerlink" href="#conclusion" title="Lien vers cette rubrique"></a></h2>
-<p>À l’issue de ces étapes, Ubuntu 22.04 est correctement installé
-et configuré sur la Raspberry Pi 5.</p>
-<p>Le système est maintenant prêt pour l’installation de <strong>ROS 2 Humble</strong>
-et le déploiement des applications robotiques.</p>
 </section>
 </section>
 
