@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fonctionnement des Dynamixels &mdash; Documentation Cours d&#39;Informatique Industrielle avec ROS2 1.0.0</title>
+  <title>Fonctionnement des Servomoteurs Dynamixel AX-12A &mdash; Documentation Cours d&#39;Informatique Industrielle avec ROS2 1.0.0</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
@@ -67,11 +67,11 @@
 <li class="toctree-l3"><a class="reference internal" href="p50s05_ubuntu.html">Installation d’Ubuntu sur la Raspberry Pi 5</a></li>
 <li class="toctree-l3"><a class="reference internal" href="p50s04_ROS2.html">Installation de ROS2 sur la Rasberry Pi 5</a></li>
 <li class="toctree-l3"><a class="reference internal" href="p50s03_urdf.html">Génération de la description URDF du pantographe</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Fonctionnement des Dynamixels</a><ul>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Fonctionnement des Servomoteurs Dynamixel AX-12A</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#branchement-des-moteurs">Branchement des moteurs</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#preparation-des-fichiers">Préparation des fichiers</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#adapter-le-code-pour-nos-moteurs">Adapter le code pour nos moteurs</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#mise-en-route">Mise en route</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#detection-via-dynamixel-wizard-2-0">Détection via Dynamixel Wizard 2.0</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mise-en-oeuvre-du-controle-python">Mise en œuvre du contrôle Python</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#guide-de-pilotage-au-clavier">Guide de pilotage au clavier</a></li>
 </ul>
 </li>
 </ul>
@@ -96,7 +96,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="p50s00_index.html">Pantographe de dessin robotisé avec Raspberry Pi et ROS2</a></li>
-      <li class="breadcrumb-item active">Fonctionnement des Dynamixels</li>
+      <li class="breadcrumb-item active">Fonctionnement des Servomoteurs Dynamixel AX-12A</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/p00_pentograph_pencil_holder_with_rpi_and_dynamixel/p50s06_dynamixel.rst.txt" rel="nofollow"> Afficher la source de la page</a>
       </li>
@@ -106,96 +106,81 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="fonctionnement-des-dynamixels">
-<h1>Fonctionnement des Dynamixels<a class="headerlink" href="#fonctionnement-des-dynamixels" title="Lien vers cette rubrique"></a></h1>
+  <section id="fonctionnement-des-servomoteurs-dynamixel-ax-12a">
+<h1>Fonctionnement des Servomoteurs Dynamixel AX-12A<a class="headerlink" href="#fonctionnement-des-servomoteurs-dynamixel-ax-12a" title="Lien vers cette rubrique"></a></h1>
+<p>Cette section décrit la procédure complète pour détecter, configurer et contrôler deux servomoteurs AX-12A montés sur la plateforme.</p>
 <section id="branchement-des-moteurs">
 <h2>Branchement des moteurs<a class="headerlink" href="#branchement-des-moteurs" title="Lien vers cette rubrique"></a></h2>
-<p>Les moteurs Dynamixel sont connectés en série (daisy chain). Chaque moteur a une adresse unique pour être contrôlé séparément. Assurez-vous que les câbles d’alimentation et de données sont bien branchés.</p>
-<p>La communication entre la Raspberry Pi et les moteurs passe généralement par un convertisseur USB, par exemple l’U2D2.</p>
+<p>Les moteurs Dynamixel sont connectés en série (<strong>daisy chain</strong>). Chaque moteur possède une adresse (ID) unique pour être contrôlé séparément.</p>
+<ul class="simple">
+<li><p><strong>Interface</strong> : La communication entre le Raspberry Pi (ou PC) et les moteurs passe par un convertisseur USB <strong>U2D2</strong>.</p></li>
+<li><p><strong>Alimentation</strong> : Les moteurs AX-12A nécessitent une alimentation externe de <strong>12V</strong>.</p></li>
+</ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Voir la <a class="reference external" href="https://emanual.robotis.com/docs/en/parts/interface/u2d2/">documentation</a> pour les détails de branchement et la description de l’U2D2.</p>
+<p>Assurez-vous que les câbles de données et de puissance sont bien verrouillés. Un mauvais contact sur un câble de la chaîne peut empêcher la détection des moteurs suivants.</p>
 </div>
 </section>
-<section id="preparation-des-fichiers">
-<h2>Préparation des fichiers<a class="headerlink" href="#preparation-des-fichiers" title="Lien vers cette rubrique"></a></h2>
-<p>Après avoir branché les moteurs et l’U2D2, préparez votre espace de travail et les fichiers nécessaires :</p>
-<ol class="arabic">
-<li><p>Créez un workspace ROS 2 :</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>~/ros2_ws/src
-<span class="nb">cd</span><span class="w"> </span>~/ros2_ws/src
-</pre></div>
-</div>
-</li>
-<li><p>Clonez le SDK Dynamixel :</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span><span class="nv">$ROS_DISTRO</span>-devel<span class="w"> </span>https://github.com/ROBOTIS-GIT/DynamixelSDK
-</pre></div>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Si la variable <cite>$ROS_DISTRO</cite> pose problème, remplacez-la par votre version (par ex. Jazzy).</p>
-</div>
-</li>
-<li><p>Compilez le workspace :</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>~/ros2_ws
-ros2_build
-</pre></div>
-</div>
-</li>
-<li><p>Vérifiez le port USB et ajoutez les permissions si nécessaire :</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls<span class="w"> </span>/dev/tty*
-sudo<span class="w"> </span>usermod<span class="w"> </span>-aG<span class="w"> </span>dialout<span class="w"> </span>&lt;votre_compte&gt;
-</pre></div>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Pour connaître votre compte :</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>whoami
-</pre></div>
-</div>
-</div>
-</li>
+<section id="detection-via-dynamixel-wizard-2-0">
+<h2>Détection via Dynamixel Wizard 2.0<a class="headerlink" href="#detection-via-dynamixel-wizard-2-0" title="Lien vers cette rubrique"></a></h2>
+<p>Avant de lancer un script, utilisez le logiciel <a class="reference external" href="https://emanual.robotis.com/docs/en/software/dynamixel/dynamixel_wizard2/">Dynamixel Wizard 2.0</a> pour valider l’état du bus.</p>
+<ol class="arabic simple">
+<li><p>Sélectionnez le port (ex: <code class="docutils literal notranslate"><span class="pre">COM4</span></code> ou <code class="docutils literal notranslate"><span class="pre">/dev/ttyUSB0</span></code>).</p></li>
+<li><p>Configurez le protocole sur <strong>1.0</strong> (spécifique aux AX-12A).</p></li>
+<li><p>Lancez le <strong>Scan</strong>.</p></li>
 </ol>
+<p>D’après nos tests, les paramètres détectés sont :
+* <strong>Baudrate</strong> : <code class="docutils literal notranslate"><span class="pre">115200</span> <span class="pre">bps</span></code>
+* <strong>IDs</strong> : <code class="docutils literal notranslate"><span class="pre">1</span></code> et <code class="docutils literal notranslate"><span class="pre">2</span></code>
+* <strong>Protocole</strong> : <code class="docutils literal notranslate"><span class="pre">1.0</span></code></p>
 </section>
-<section id="adapter-le-code-pour-nos-moteurs">
-<h2>Adapter le code pour nos moteurs<a class="headerlink" href="#adapter-le-code-pour-nos-moteurs" title="Lien vers cette rubrique"></a></h2>
-<p>Les exemples du SDK ciblent souvent des modèles Xseries (XL430, etc.). Pour des moteurs AX-12, adaptez quelques paramètres dans <cite>read_write_node.cpp</cite> (dans <cite>~/robotis_ws/src/DynamixelSDK/dynamixel_sdk_examples/src</cite> si vous avez suivi l’organisation ci-dessus).</p>
-<p>Modifiez les adresses de la table de contrôle en remplaçant les constantes par celles des AX-12, par exemple :</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Exemples d&#39;adresses (vérifiez la datasheet pour AX-12)</span>
-<span class="cp">#define ADDR_TORQUE_ENABLE 24</span>
-<span class="cp">#define ADDR_GOAL_POSITION 30</span>
-<span class="cp">#define ADDR_PRESENT_POSITION 36</span>
+<section id="mise-en-oeuvre-du-controle-python">
+<h2>Mise en œuvre du contrôle Python<a class="headerlink" href="#mise-en-oeuvre-du-controle-python" title="Lien vers cette rubrique"></a></h2>
+<p>Pour piloter les moteurs, nous utilisons la bibliothèque officielle <strong>Dynamixel SDK</strong>.</p>
+<section id="installation">
+<h3>Installation<a class="headerlink" href="#installation" title="Lien vers cette rubrique"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>dynamixel-sdk
 </pre></div>
 </div>
-<p>Consultez le tableau « Control Table of RAM Area » dans la <a class="reference external" href="https://emanual.robotis.com/docs/en/dxl/ax/ax-12a/">datasheet</a> pour les adresses exactes.</p>
-<p>Changez aussi la version du protocole si nécessaire :</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#define PROTOCOL_VERSION 1.0</span>
-</pre></div>
-</div>
-<p>Et mettez le <cite>baudrate</cite> adapté à vos moteurs (par ex. 115200 si besoin).</p>
-<p>Le fichier modifié est fourni en ressource :</p>
-<p><code class="xref download docutils literal notranslate"><span class="pre">read_write_node.cpp</span></code></p>
 </section>
-<section id="mise-en-route">
-<h2>Mise en route<a class="headerlink" href="#mise-en-route" title="Lien vers cette rubrique"></a></h2>
-<p>Sourcez le workspace et rebuild si besoin :</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>~/robotis_ws<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">source</span><span class="w"> </span>install/setup.bash
-ros2_build
+<section id="configuration-et-adaptation-du-code">
+<h3>Configuration et adaptation du code<a class="headerlink" href="#configuration-et-adaptation-du-code" title="Lien vers cette rubrique"></a></h3>
+<p>Pour que le code fonctionne avec des moteurs AX-12A, il est crucial d’adapter les adresses de la table de contrôle (RAM Area). Contrairement aux séries X, les AX-12A utilisent les constantes suivantes :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Adresses de la table de contrôle (Datasheet AX-12A)</span>
+<span class="n">ADDR_TORQUE_ENABLE</span>    <span class="o">=</span> <span class="mi">24</span>  <span class="c1"># Activation du couple</span>
+<span class="n">ADDR_GOAL_POSITION</span>    <span class="o">=</span> <span class="mi">30</span>  <span class="c1"># Position cible (0-1023)</span>
+<span class="n">ADDR_PRESENT_POSITION</span> <span class="o">=</span> <span class="mi">36</span>  <span class="c1"># Lecture position actuelle</span>
+
+<span class="c1"># Paramètres de communication</span>
+<span class="n">PROTOCOL_VERSION</span>      <span class="o">=</span> <span class="mf">1.0</span>       <span class="c1"># Protocol 1.0 impératif</span>
+<span class="n">BAUDRATE</span>              <span class="o">=</span> <span class="mi">115200</span>    <span class="c1"># Valeur trouvée via le Wizard</span>
+<span class="n">DEVICENAME</span>            <span class="o">=</span> <span class="s1">&#39;COM4&#39;</span>    <span class="c1"># À changer en &#39;/dev/ttyUSB0&#39; sur Linux</span>
 </pre></div>
 </div>
-<p>Lancez la node d’exemple :</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>run<span class="w"> </span>dynamixel_sdk_examples<span class="w"> </span>read_write_node
+<section id="explications-des-variables-a-modifier">
+<h4>Explications des variables à modifier :<a class="headerlink" href="#explications-des-variables-a-modifier" title="Lien vers cette rubrique"></a></h4>
+<ul class="simple">
+<li><p><strong>BAUDRATE</strong> : Si vos moteurs ne répondent pas, vérifiez si cette valeur est bien celle configurée dans le Wizard (souvent 115200 ou 1000000).</p></li>
+<li><p><strong>DEVICENAME</strong> : Sous Windows, utilisez le port COM identifié. Sous Linux/Raspberry Pi, utilisez le chemin du port série (généralement <code class="docutils literal notranslate"><span class="pre">/dev/ttyUSB0</span></code>).</p></li>
+<li><p><strong>ADDR_GOAL_POSITION</strong> : Indique au SDK où écrire l’ordre de mouvement. Sur AX-12A, il s’agit de 2 octets (Write2Byte).</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="guide-de-pilotage-au-clavier">
+<h2>Guide de pilotage au clavier<a class="headerlink" href="#guide-de-pilotage-au-clavier" title="Lien vers cette rubrique"></a></h2>
+<p>Le script développé permet un contrôle indépendant ou combiné des deux servomoteurs.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Touches de contrôle :
+--------------------
+[A] / [D] : Moteur 1 (ID 1) - Rotation Gauche / Droite
+[W] / [S] : Moteur 2 (ID 2) - Rotation Haut / Bas
+[ESC]     : Quitter et désactiver le couple (Torque OFF)
 </pre></div>
 </div>
-<p>Dans un autre terminal, vous pouvez commander ou lire la position d’un moteur :</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># commander le moteur 1 à la position 1000</span>
-ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>-l<span class="w"> </span>/set_position<span class="w"> </span>dynamixel_sdk_custom_interfaces/SetPosition<span class="w"> </span><span class="s2">&quot;{id: 1, position: 1000}&quot;</span>
-</pre></div>
-</div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># récupérer la position du moteur 2</span>
-ros2<span class="w"> </span>service<span class="w"> </span>call<span class="w"> </span>/get_position<span class="w"> </span>dynamixel_sdk_custom_interfaces/srv/GetPosition<span class="w"> </span><span class="s2">&quot;id: 2&quot;</span>
-</pre></div>
-</div>
+<ul class="simple">
+<li><p><a class="reference external" href="https://emanual.robotis.com/docs/en/dxl/ax/ax-12a/">Datasheet officielle AX-12A</a></p></li>
+<li><p><a class="reference external" href="https://emanual.robotis.com/docs/en/parts/interface/u2d2/">Documentation interface U2D2</a></p></li>
+</ul>
 </section>
 </section>
 
