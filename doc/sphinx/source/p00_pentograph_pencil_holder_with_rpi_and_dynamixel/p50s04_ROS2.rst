@@ -36,8 +36,10 @@ Les listes de paquets doivent être mises à jour et les dépendances nécessair
     source /opt/ros/rolling/setup.bash
 
 Nous pouvons vérifier l'installation en lançant **TurtleSim** :
+
 .. figure:: resources/img/TurtleSim.png
     :width: 50%
     :align: center
+
 
 .. _documentation: https://ros2docs.robook.org/rolling/Installation/Ubuntu-Install-Debs.html
