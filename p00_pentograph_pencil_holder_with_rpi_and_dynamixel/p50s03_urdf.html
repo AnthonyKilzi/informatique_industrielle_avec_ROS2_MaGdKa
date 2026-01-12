@@ -153,7 +153,44 @@ Il va donc falloir convertir notre modèle 3D au format step en un ensemble de 5
 </section>
 <section id="creation-du-fichier-urdf">
 <h2>Création du fichier URDF<a class="headerlink" href="#creation-du-fichier-urdf" title="Lien vers cette rubrique"></a></h2>
-<p>Dans un fichier URDF les modèles 3D sont référencés par des balises <code class="docutils literal notranslate"><span class="pre">&lt;mesh&gt;</span></code>.</p>
+<p>Le fichier URDF du pantographe est disponible en ressource :
+<strong>ERREUR CRITIQUE : Alignement des maillages 3D et fichiers URDF</strong></p>
+<p>Les fichiers URDF référencent les maillages 3D par rapport au repère local de chaque lien. Pour garantir la validité de la simulation, il est impératif de vérifier la position des repères (frames) des fichiers 3D.</p>
+<p><strong>Pourquoi est-ce crucial ?</strong>
+Une erreur de référencement provoque des décalages visuels et fausse totalement le calcul des masses et des matrices d’inertie, rendant la simulation physique instable ou erronée.</p>
+<p><strong>Action corrective requise :</strong>
+* <strong>Réexporter les fichiers 3D individuellement.</strong>
+* <strong>Référencement local :</strong> Chaque pièce doit être exportée par rapport à son propre repère d’origine (repère pièce) et non par rapport au repère global de l’assemblage.</p>
+<section id="details-du-link-1-et-joint-1">
+<h3>Détails du Link 1 et Joint 1<a class="headerlink" href="#details-du-link-1-et-joint-1" title="Lien vers cette rubrique"></a></h3>
+<p>Voici l’extrait du fichier URDF correspondant à l’articulation principale :</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;link</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;link1&quot;</span><span class="nt">&gt;</span>
+<span class="w">  </span><span class="nt">&lt;visual&gt;</span>
+<span class="w">    </span><span class="nt">&lt;geometry&gt;</span>
+<span class="w">      </span><span class="nt">&lt;mesh</span><span class="w"> </span><span class="na">filename=</span><span class="s">&quot;file:///home/ada/ws1612/src/ecat_ros2_workshop/scara_description/urdf/meshes/link1.dae&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/geometry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;origin</span><span class="w"> </span><span class="na">xyz=</span><span class="s">&quot;0 0 0&quot;</span><span class="w"> </span><span class="na">rpy=</span><span class="s">&quot;0 0 0&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/visual&gt;</span>
+<span class="nt">&lt;/link&gt;</span>
+
+<span class="nt">&lt;joint</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;joint1&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;revolute&quot;</span><span class="nt">&gt;</span>
+<span class="w">   </span><span class="nt">&lt;parent</span><span class="w"> </span><span class="na">link=</span><span class="s">&quot;base_link&quot;</span><span class="nt">/&gt;</span>
+<span class="w">   </span><span class="nt">&lt;child</span><span class="w"> </span><span class="na">link=</span><span class="s">&quot;link1&quot;</span><span class="nt">/&gt;</span>
+<span class="w">   </span><span class="nt">&lt;origin</span><span class="w"> </span><span class="na">xyz=</span><span class="s">&quot;-0.08 -0.07 0.035&quot;</span><span class="w"> </span><span class="na">rpy=</span><span class="s">&quot;0 0 0&quot;</span><span class="nt">/&gt;</span>
+<span class="w">   </span><span class="nt">&lt;axis</span><span class="w"> </span><span class="na">xyz=</span><span class="s">&quot;0 0 1&quot;</span><span class="nt">/&gt;</span>
+<span class="w">   </span><span class="nt">&lt;limit</span><span class="w"> </span><span class="na">lower=</span><span class="s">&quot;-3.14&quot;</span><span class="w"> </span><span class="na">upper=</span><span class="s">&quot;3.14&quot;</span><span class="w"> </span><span class="na">effort=</span><span class="s">&quot;10&quot;</span><span class="w"> </span><span class="na">velocity=</span><span class="s">&quot;1.0&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/joint&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="explication-technique">
+<h3>Explication technique<a class="headerlink" href="#explication-technique" title="Lien vers cette rubrique"></a></h3>
+<ul class="simple">
+<li><p><strong>Origin du Joint</strong> : Définit la position du repère de l’enfant (<cite>link1</cite>) par rapport au parent (<cite>base_link</cite>). Il faut donc récupérer les coordonnées exactes de l’axe de rotation du joint dans l’assemblage global. Cela peut être fait en utilisant un logiciel de CAO pour mesurer la position de l’axe de rotation par rapport au repère global de l’assemblage.</p></li>
+<li><p><strong>Origin du Visual</strong> : Comme elle est à <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">0</span> <span class="pre">0</span></code>, le centre du fichier <code class="docutils literal notranslate"><span class="pre">link1.dae</span></code> doit correspondre exactement à l’axe de rotation défini dans le joint.</p></li>
+<li><p><strong>Mesh filename</strong> : Le chemin d’accès au fichier 3D exporté en collada. Ici il est possible de définir un chemin relatif mais cela peut engendrer des erreurs et que le fichier dae ne soit pas trouvé lors de l’utilisation du fichier URDF dans ROS2. Il est donc préférable d’utiliser un chemin absolu.</p></li>
+</ul>
+</section>
 </section>
 </section>
 
