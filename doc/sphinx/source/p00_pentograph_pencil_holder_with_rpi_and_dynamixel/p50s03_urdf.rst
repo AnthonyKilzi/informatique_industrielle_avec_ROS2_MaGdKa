@@ -51,6 +51,7 @@ Création du fichier URDF
 =========================
 
 Le fichier URDF du pantographe est disponible en ressource :
+
 **ERREUR : Placement des repères au sein des fichiers**
 
 Les fichiers URDF référencent les maillages 3D par rapport au repère local de chaque lien. Pour garantir la validité de la simulation, il est impératif de vérifier la position des repères (frames) des fichiers 3D.
