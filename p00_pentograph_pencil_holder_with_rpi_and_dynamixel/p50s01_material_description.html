@@ -64,14 +64,17 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Description du Matériel de notre maquette Pantographe</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#unite-de-controle-et-gestion-thermique">1. Unité de Contrôle et Gestion Thermique</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#raspberry-pi-5-raspberry-pi-5-datasheet">Raspberry Pi 5 (Raspberry Pi 5 datasheet)</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#refroidissement-a-l-aide-d-un-ventilateur">Refroidissement à l’aide d’un ventilateur</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#refroidissement-a-l-aide-d-un-ventilateur-raspberry-pi-active-cooler">Refroidissement à l’aide d’un ventilateur (Raspberry Pi Active Cooler)</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#solution-de-stockage-haute-performance">2. Solution de Stockage Haute Performance</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#ssd-adata-legend-700-adata-legend-700-datasheet">SSD Adata Legend 700 (Adata Legend 700 datasheet)</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#actionneurs">3. Actionneurs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#actionneurs">3. Actionneurs</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#dynamixel-ax-12a-ax-12a-dynamixel-datasheet">Dynamixel AX-12A (AX-12A Dynamixel datasheet)</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="p50s02_mechanical_description.html">Description mécanique de la plateforme pantographe</a></li>
@@ -121,10 +124,10 @@
 <p>C’est l’élément central qui va assurer le traitement des données et le contrôle des moteurs.</p>
 <ul class="simple">
 <li><p>Broadcom BCM2712 2.4GHz quad-core 64-bit Arm Cortex-A76 CPU, with cryptography extensions, 512KB per-core L2 caches and a 2MB shared L3 cache</p></li>
-<li><p>VideoCore VII GPU, supporting OpenGL ES 3.1, Vulkan 1.2</p></li>
+<li><p>VideoCore VII GPU, supporting OpenGL ES 3.1, Vulkan 1.3</p></li>
 <li><p>4Kp60 HEVC decoder</p></li>
 <li><p>Dual 4Kp60 HDMI® display output with HDR support</p></li>
-<li><p>LPDDR4X-4267 SDRAM (2GB, 4GB, 8GB, and 16GB)</p></li>
+<li><p>LPDDR4X-4267 SDRAM (1GB, 2GB, 4GB, 8GB, and 16GB)</p></li>
 <li><p>Dual-band 802.11ac Wi-Fi®</p></li>
 <li><p>2 × USB 3.0 ports, supporting simultaneous 5Gbps operation</p></li>
 <li><p>2 × USB 2.0 ports</p></li>
@@ -137,15 +140,18 @@
 <li><p>Raspberry Pi standard 40-pin header</p></li>
 <li><p>Real-time clock (RTC), powered from external battery</p></li>
 </ul>
+<p>-Power button</p>
 </section>
-<section id="refroidissement-a-l-aide-d-un-ventilateur">
-<h3>Refroidissement à l’aide d’un ventilateur<a class="headerlink" href="#refroidissement-a-l-aide-d-un-ventilateur" title="Lien vers cette rubrique"></a></h3>
+<section id="refroidissement-a-l-aide-d-un-ventilateur-raspberry-pi-active-cooler">
+<h3>Refroidissement à l’aide d’un ventilateur (<a class="reference external" href="https://www.raspberrypi.com/products/active-cooler/">Raspberry Pi Active Cooler</a>)<a class="headerlink" href="#refroidissement-a-l-aide-d-un-ventilateur-raspberry-pi-active-cooler" title="Lien vers cette rubrique"></a></h3>
 <p>Ensuite, l’utilisaiton d’un ventilateur pour garantir un maintien des performances du processeur :</p>
 <ul class="simple">
-<li><p><strong>Type</strong> : Radiateur en aluminium anodisé avec ventilateur intégré.</p></li>
-<li><p><strong>Voltage d’entrée</strong> : 5V DC (fourni via le port ventilateur dédié sur Raspberry Pi 5)</p></li>
-<li><p><strong>Contrôle</strong> : Gestion automatique par PWM via le port ventilateur dédié.</p></li>
-<li><p><strong>Performance</strong> : 8000 RPM ± 15% et 1.09 CFM(pieds cubes par minute).</p></li>
+<li><p><strong>Type</strong> : Dissipateur thermique en aluminium anodisé avec ventilateur intégré.</p></li>
+<li><p><strong>Tension d’entrée</strong> : 5V DC fourni via le connecteur ventilateur à 4 broches du Raspberry Pi 5.</p></li>
+<li><p><strong>Contrôle de vitesse</strong> : Modulation de largeur d’impulsion (PWM) avec retour tachymétrique.</p></li>
+<li><p><strong>Débit d’air maximum</strong> : 1.09 CFM (pieds cubes par minute).</p></li>
+<li><p><strong>Vitesse maximale</strong> : 8000 RPM ± 15% (tours par minute).</p></li>
+<li><p><strong>Matériau</strong> : Aluminium anodisé.</p></li>
 </ul>
 </section>
 </section>
@@ -156,35 +162,103 @@
 <section id="ssd-adata-legend-700-adata-legend-700-datasheet">
 <h3>SSD Adata Legend 700 (<a class="reference external" href="https://www.adata.com/en/consumer/category/ssds/solid-state-drives-legend-700/">Adata Legend 700 datasheet</a>)<a class="headerlink" href="#ssd-adata-legend-700-adata-legend-700-datasheet" title="Lien vers cette rubrique"></a></h3>
 <ul class="simple">
-<li><p><strong>Format</strong> : M.2 2280 sur interface PCIe Gen3 x4.</p></li>
-<li><p><strong>Capacité</strong> : 256 GB.</p></li>
+<li><p><strong>Capacité</strong> : 512 GB / 1 TB</p></li>
+<li><p><strong>Format</strong> : M.2 2280</p></li>
+<li><p><strong>Interface</strong> : PCIe Gen3 x4</p></li>
+<li><p><strong>Mémoire Flash</strong> : 3D NAND</p></li>
 <li><dl class="simple">
-<dt><strong>Performances</strong> :</dt><dd><ul>
-<li><p><strong>Lecture séquentielle</strong> : Jusqu’à 2000 MB/s.</p></li>
-<li><p><strong>Écriture séquentielle</strong> : Jusqu’à 1600 MB/s.</p></li>
+<dt><strong>Dimensions (L x l x H)</strong> :</dt><dd><ul>
+<li><p>Avec dissipateur : 80 x 22 x 3.13 mm</p></li>
+<li><p>Sans dissipateur : 80 x 22 x 2.15 mm</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><p><strong>Durabilité</strong> : 480 TBW (<em>Total Bytes Written</em>) et MTBF de 1,5 million d’heures.</p></li>
-<li><p><strong>Température de fonctionnement</strong> : 0°C à 70°C.</p></li>
+<li><dl class="simple">
+<dt><strong>Poids</strong> :</dt><dd><ul>
+<li><p>Avec dissipateur : 9 g</p></li>
+<li><p>Sans dissipateur : 6.2 g</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Performances</strong> :</dt><dd><ul>
+<li><p>Lecture séquentielle (Max) : Jusqu’à 2000 MB/s</p></li>
+<li><p>Écriture séquentielle (Max) : Jusqu’à 1600 MB/s</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Fiabilité et Durabilité</strong> :</dt><dd><ul>
+<li><p>MTBF : 1 500 000 heures</p></li>
+<li><p>TBW (Total Bytes Written) : 320 TB</p></li>
+<li><p>Résistance aux chocs : 1500G / 0.5 ms</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Températures</strong> :</dt><dd><ul>
+<li><p>Fonctionnement : 0°C à 70°C</p></li>
+<li><p>Stockage : -40°C à 85°C</p></li>
+</ul>
+</dd>
+</dl>
+</li>
 </ul>
 </section>
 </section>
 <hr class="docutils" />
 <section id="actionneurs">
 <h2>3. Actionneurs<a class="headerlink" href="#actionneurs" title="Lien vers cette rubrique"></a></h2>
-<p>Le pantographe est articulé par des servomoteurs Dynamixel AX-12A permettant un retour d’information précis. (<a class="reference external" href="https://emanual.robotis.com/docs/en/dxl/ax/ax-12a/">AX-12A Dynamixel datasheet</a>)</p>
+<section id="dynamixel-ax-12a-ax-12a-dynamixel-datasheet">
+<h3>Dynamixel AX-12A (<a class="reference external" href="https://emanual.robotis.com/docs/en/dxl/ax/ax-12a/">AX-12A Dynamixel datasheet</a>)<a class="headerlink" href="#dynamixel-ax-12a-ax-12a-dynamixel-datasheet" title="Lien vers cette rubrique"></a></h3>
+<p>Le pantographe est articulé par des servomoteurs Dynamixel AX-12A permettant un retour d’information précis.</p>
 <ul class="simple">
+<li><dl class="simple">
+<dt><strong>Performances</strong> :</dt><dd><ul>
 <li><p><strong>Couple à l’arrêt</strong> : 1.5 N.m (à 12V, 1.5A)</p></li>
 <li><p><strong>Vitesse à vide</strong> : 59 tr/min (à 12V)</p></li>
-<li><p><strong>Angle de rotation</strong> : 0° à 300° (ou rotation continue)</p></li>
 <li><p><strong>Résolution</strong> : 0.29°</p></li>
-<li><p><strong>Tension d’entrée</strong> : 9V à 12V (Recommandé : 11.1V / 12V)</p></li>
-<li><p><strong>Communication</strong> : Bus TTL Multi-drop (Série asynchrone half-duplex)</p></li>
-<li><p><strong>Retour d’information</strong> : Position, température, charge et tension d’entrée</p></li>
-<li><p><strong>Matériau</strong> : Engrenages et boîtier en plastique technique haute résistance</p></li>
+<li><p><strong>Angle de rotation</strong> : 0° à 300° (ou mode rotation continue)</p></li>
 </ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Électronique et Alimentation</strong> :</dt><dd><ul>
+<li><p><strong>Tension d’entrée</strong> : 9.0V à 12.0V (Recommandé : 11.1V)</p></li>
+<li><p><strong>Moteur</strong> : Moteur à noyau (Cored)</p></li>
+<li><p><strong>Rapport de réduction</strong> : 254:1</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Communication et Contrôle</strong> :</dt><dd><ul>
+<li><p><strong>Signal</strong> : Paquet numérique (Digital Packet)</p></li>
+<li><p><strong>Protocole</strong> : Bus TTL Multi-drop, série asynchrone half-duplex (8-bit, 1-stop, sans parité)</p></li>
+<li><p><strong>Vitesse (Baud Rate)</strong> : 7,843 bps à 1 Mbps</p></li>
+<li><p><strong>ID</strong> : 254 adresses uniques (0 à 253)</p></li>
+<li><p><strong>Retour d’information</strong> : Position, température, charge, tension d’entrée, etc.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Physique</strong> :</dt><dd><ul>
+<li><p><strong>Dimensions</strong> : 32 x 50 x 40 mm</p></li>
+<li><p><strong>Poids</strong> : 54.6 g</p></li>
+<li><p><strong>Matériau</strong> : Engrenages et boîtier en plastique technique haute résistance</p></li>
+<li><p><strong>Température de fonctionnement</strong> : -5°C à +70°C</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
 </section>
 </section>
 
