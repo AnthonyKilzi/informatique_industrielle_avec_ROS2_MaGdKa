@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>&lt;no title&gt; &mdash; Documentation Cours d&#39;Informatique Industrielle avec ROS2 1.0.0</title>
+  <title>Visualisation du modèle &mdash; Documentation Cours d&#39;Informatique Industrielle avec ROS2 1.0.0</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
@@ -76,7 +76,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">&lt;no title&gt;</li>
+      <li class="breadcrumb-item active">Visualisation du modèle</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/p00_pentograph_pencil_holder_with_rpi_and_dynamixel/p50s07_rviz.rst.txt" rel="nofollow"> Afficher la source de la page</a>
       </li>
@@ -86,7 +86,78 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  
+  <section id="visualisation-du-modele">
+<h1>Visualisation du modèle<a class="headerlink" href="#visualisation-du-modele" title="Lien vers cette rubrique"></a></h1>
+<p>Il est possible de visualiser le modèle issu du fichier URDF du pantographe à l’aide de RViz. Cet outil peut être utilisé pour vérifier la validité du modèle lui-même, c’est pourquoi nous l’avons exposé au travers d’une launch file qui traite automatiquement le fichier contenant les macros Xacro. Cette approche est destinée au développement ; ainsi en production, il faudra utiliser le fichier URDF généré pour éviter le gaspillage de ressources.</p>
+<p>Pour lancer la visualisation, utilisez la commande suivante :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>pantographe_description<span class="w"> </span>display.launch.py
+</pre></div>
+</div>
+<p>Vous pouvez ainsi vous assurer du bon placement des repères et d’autres paramètres.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/Rviz.png"><img alt="../_images/Rviz.png" src="../_images/Rviz.png" style="width: 50%;" />
+</a>
+</figure>
+<p>Etant donné que nous n’avons pas réussi à configurer le fichier URDF de manière à obtenir un système fermer, nous avons laissé tout les liens commandable et nous n’avons pas fermer le pantographe dans RViz. Le système est commandable à l’aide du scara_joint_velocity_controller. Afin d’utiliser ce contrôleur, il faut d’abord le configurer.
+Comme nous avons repris les codes du scara, il faut modifier le fichier <cite>scara.ros2control.urdf</cite>. Il faut modifier chaque joint que l’on souhaite ajouter de la manière suivante :
+.. code-block:: xml</p>
+<blockquote>
+<div><dl>
+<dt>&lt;joint name= »joint1 » type= »revolute »&gt;</dt><dd><p>&lt;command_interface name= »position »/&gt;
+&lt;state_interface name= »position »&gt;</p>
+<blockquote>
+<div><p>&lt;param name= »initial_value »&gt;-3.14&lt;/param&gt;
+&lt;param name= »min »&gt;-5&lt;/param&gt;
+&lt;param name= »max »&gt;5&lt;/param&gt;</p>
+</div></blockquote>
+<p>&lt;/state_interface&gt;
+&lt;state_interface name= »velocity »&gt;</p>
+<blockquote>
+<div><p>&lt;param name= »initial_value »&gt;0.0&lt;/param&gt;</p>
+</div></blockquote>
+<p>&lt;/state_interface&gt;</p>
+</dd>
+</dl>
+<p>&lt;/joint&gt;</p>
+</div></blockquote>
+<p>Dans ce fichier, nous avons ajouté une interface de commande en position et deux interfaces d’état (position et vitesse) pour chaque joint. Il y a aussi des paramètres pour définir la valeur initiale, la valeur minimale et maximale pour chaque joint.</p>
+<p>Ensuite, il faut modifier <cite>scara_control.yaml</cite> et selectionner y ajouter les joints que l’on souhaite commander. Dans notre cas, nous avons ajouté les quatre joints du pantographe. Voici un extrait du fichier modifié :
+.. code-block:: yaml</p>
+<blockquote>
+<div><p>scara_trajectory_controller:
+ros__parameters:</p>
+<blockquote>
+<div><p>command_interfaces:
+- position
+state_interfaces:
+- position
+joints:
+- joint1
+- joint2
+- joint3
+- joint4</p>
+</div></blockquote>
+<p>scara_position_controller:
+ros__parameters:</p>
+<blockquote>
+<div><p>joints:
+- joint1
+- joint2
+- joint3
+- joint4</p>
+</div></blockquote>
+<p>scara_joint_velocity_controller:
+ros__parameters:</p>
+<blockquote>
+<div><p>joints:
+- joint1
+- joint2
+- joint3
+- joint4</p>
+</div></blockquote>
+</div></blockquote>
+</section>
+
 
            </div>
           </div>

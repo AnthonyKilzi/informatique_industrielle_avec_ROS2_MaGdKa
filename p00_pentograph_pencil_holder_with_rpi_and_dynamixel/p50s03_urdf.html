@@ -161,8 +161,9 @@ Une erreur de référencement provoque des décalages visuels et fausse totaleme
 <p><strong>Action corrective requise :</strong>
 * <strong>Réexporter les fichiers 3D individuellement.</strong>
 * <strong>Référencement local :</strong> Chaque pièce doit être exportée par rapport à son propre repère d’origine (repère pièce) et non par rapport au repère global de l’assemblage.</p>
-<section id="details-du-link-1-et-joint-1">
-<h3>Détails du Link 1 et Joint 1<a class="headerlink" href="#details-du-link-1-et-joint-1" title="Lien vers cette rubrique"></a></h3>
+<p>Pour définir le fichier URDF, nous avons repris la structure du fichier URDF du SCARA disponible dans le dépôt github. Ensuite, il faut changer les parties correspondantes aux liens et aux joints.</p>
+<section id="voici-un-extrait-du-fichier-urdf-du-pantographe-avec-les-details-du-link-1-et-joint-1">
+<h3>Voici un extrait du fichier URDF du pantographe avec les détails du Link 1 et Joint 1<a class="headerlink" href="#voici-un-extrait-du-fichier-urdf-du-pantographe-avec-les-details-du-link-1-et-joint-1" title="Lien vers cette rubrique"></a></h3>
 <p>Voici l’extrait du fichier URDF correspondant à l’articulation principale :</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;link</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;link1&quot;</span><span class="nt">&gt;</span>
 <span class="w">  </span><span class="nt">&lt;visual&gt;</span>

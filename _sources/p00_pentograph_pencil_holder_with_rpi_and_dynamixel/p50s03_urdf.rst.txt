@@ -62,8 +62,10 @@ Une erreur de référencement provoque des décalages visuels et fausse totaleme
 * **Réexporter les fichiers 3D individuellement.**
 * **Référencement local :** Chaque pièce doit être exportée par rapport à son propre repère d'origine (repère pièce) et non par rapport au repère global de l'assemblage.
 
-Détails du Link 1 et Joint 1
-----------------------------
+Pour définir le fichier URDF, nous avons repris la structure du fichier URDF du SCARA disponible dans le dépôt github. Ensuite, il faut changer les parties correspondantes aux liens et aux joints.
+
+Voici un extrait du fichier URDF du pantographe avec les détails du Link 1 et Joint 1
+-------------------------------------------------------------------------------------
 
 Voici l'extrait du fichier URDF correspondant à l'articulation principale :
 
@@ -92,3 +94,4 @@ Explication technique
 * **Origin du Joint** : Définit la position du repère de l'enfant (`link1`) par rapport au parent (`base_link`). Il faut donc récupérer les coordonnées exactes de l'axe de rotation du joint dans l'assemblage global. Cela peut être fait en utilisant un logiciel de CAO pour mesurer la position de l'axe de rotation par rapport au repère global de l'assemblage.
 * **Origin du Visual** : Comme elle est à ``0 0 0``, le centre du fichier ``link1.dae`` doit correspondre exactement à l'axe de rotation défini dans le joint.
 * **Mesh filename** : Le chemin d'accès au fichier 3D exporté en collada. Ici il est possible de définir un chemin relatif mais cela peut engendrer des erreurs et que le fichier dae ne soit pas trouvé lors de l'utilisation du fichier URDF dans ROS2. Il est donc préférable d'utiliser un chemin absolu.
+
