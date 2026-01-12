@@ -93,11 +93,11 @@ Ressources supplémentaires
 Vidéo de démonstration
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-Voici une vidéo montrant le fonctionnement des servomoteurs Dynamixel AX-12A sur le pentographe :
+Voici une vidéo montrant le fonctionnement des servomoteurs sur le pentographe :
 
 .. raw:: html
 
    <video controls width="560" height="315">
-     <source src="resources/img/Video_Pemtographe.mp4" type="video/mp4">
+     <source src="resources/img/Video_Pantogrpahe.mp4" type="video/mp4">
      Votre navigateur ne supporte pas la balise vidéo.
    </video>
