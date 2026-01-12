@@ -27,7 +27,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Recherche" href="../search.html" />
-    <link rel="next" title="Ubuntu &amp; RPi &amp; ROS2" href="../p01_rpi_ubuntu_as_a_ros2_robotic_platform/p51s00_index.html" />
+    <link rel="next" title="Visualisation du modèle" href="p50s07_rviz.html" />
     <link rel="prev" title="Génération de la description URDF du pantographe" href="p50s03_urdf.html" /> 
 </head>
 
@@ -74,6 +74,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#guide-de-pilotage-au-clavier">Guide de pilotage au clavier</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="p50s07_rviz.html">Visualisation du modèle</a></li>
 </ul>
 </li>
 </ul>
@@ -114,8 +115,16 @@
 <p>Les moteurs Dynamixel sont connectés en série (<strong>daisy chain</strong>). Chaque moteur possède une adresse (ID) unique pour être contrôlé séparément.</p>
 <ul class="simple">
 <li><p><strong>Interface</strong> : La communication entre le PC et les moteurs passe par un convertisseur USB <strong>U2D2</strong>.</p></li>
+</ul>
+<img alt="../_images/U2D2_hubBoard.png" class="align-center" src="../_images/U2D2_hubBoard.png" />
+<ul class="simple">
 <li><p><strong>Alimentation</strong> : Les moteurs AX-12A nécessitent une alimentation externe de <strong>12V</strong>.</p></li>
 </ul>
+<p>Le branchement du convertisseur U2D2 est le suivant :</p>
+<img alt="../_images/Branchement.png" class="align-center" src="../_images/Branchement.png" />
+<p>Pour allumer les moteurs, connectez une alimentation 12V aux bornes V+ et GND du U2D2, soit a l’aide d’une connecteur externe JST (Attention au sens du branchement), soit via un adaptateur secteur.</p>
+<p>Il faut ensuite mettre sous tension grace à l’interrupteur situé sur le côté du U2D2.</p>
+<img alt="../_images/on.png" class="align-center" src="../_images/on.png" />
 </section>
 <section id="detection-via-dynamixel-wizard-2-0">
 <h2>Détection via Dynamixel Wizard 2.0<a class="headerlink" href="#detection-via-dynamixel-wizard-2-0" title="Lien vers cette rubrique"></a></h2>
@@ -177,11 +186,10 @@
 <li><p><a class="reference external" href="https://emanual.robotis.com/docs/en/dxl/ax/ax-12a/">Datasheet officielle AX-12A</a></p></li>
 <li><p><a class="reference external" href="https://emanual.robotis.com/docs/en/parts/interface/u2d2/">Documentation interface U2D2</a></p></li>
 </ul>
-<p>Voici une vidéo montrant le fonctionnement des servomoteurs sur le pentographe :</p>
-<video controls width="560" height="315">
-  <source src="resources/img/Video_Pantogrpahe.mp4" type="video/mp4">
-  Votre navigateur ne supporte pas la balise vidéo.
-</video></section>
+<p>Voici une animation montrant le fonctionnement des servomoteurs sur le pantographe :</p>
+<a class="reference internal image-reference" href="../_images/Video_Pantogrpahe.gif"><img alt="../_images/Video_Pantogrpahe.gif" class="align-center" src="../_images/Video_Pantogrpahe.gif" style="width: 70%;" />
+</a>
+</section>
 </section>
 
 
@@ -189,7 +197,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pied de page">
         <a href="p50s03_urdf.html" class="btn btn-neutral float-left" title="Génération de la description URDF du pantographe" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Précédent</a>
-        <a href="../p01_rpi_ubuntu_as_a_ros2_robotic_platform/p51s00_index.html" class="btn btn-neutral float-right" title="Ubuntu &amp; RPi &amp; ROS2" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="p50s07_rviz.html" class="btn btn-neutral float-right" title="Visualisation du modèle" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

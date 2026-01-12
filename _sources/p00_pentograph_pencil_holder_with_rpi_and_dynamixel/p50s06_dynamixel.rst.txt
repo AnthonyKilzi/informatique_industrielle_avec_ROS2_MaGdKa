@@ -11,9 +11,21 @@ Branchement des moteurs
 Les moteurs Dynamixel sont connectés en série (**daisy chain**). Chaque moteur possède une adresse (ID) unique pour être contrôlé séparément. 
 
 * **Interface** : La communication entre le PC et les moteurs passe par un convertisseur USB **U2D2**.
+.. image:: resources/img/U2D2_hubBoard.png
+   :align: center
 * **Alimentation** : Les moteurs AX-12A nécessitent une alimentation externe de **12V**.
 
+Le branchement du convertisseur U2D2 est le suivant :
 
+.. image:: resources/img/Branchement.png
+   :align: center
+
+Pour allumer les moteurs, connectez une alimentation 12V aux bornes V+ et GND du U2D2, soit a l'aide d'une connecteur externe JST (Attention au sens du branchement), soit via un adaptateur secteur.
+
+Il faut ensuite mettre sous tension grace à l'interrupteur situé sur le côté du U2D2.
+
+.. image:: resources/img/on.png
+   :align: center
 
 ********************************************************
 Détection via Dynamixel Wizard 2.0
@@ -93,11 +105,9 @@ Ressources supplémentaires
 Vidéo de démonstration
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-Voici une vidéo montrant le fonctionnement des servomoteurs sur le pentographe :
+Voici une animation montrant le fonctionnement des servomoteurs sur le pantographe :
 
-.. raw:: html
+.. image:: resources/img/Video_Pantogrpahe.gif
+   :width: 70%
+   :align: center
 
-   <video controls width="560" height="315">
-     <source src="resources/img/Video_Pantogrpahe.mp4" type="video/mp4">
-     Votre navigateur ne supporte pas la balise vidéo.
-   </video>

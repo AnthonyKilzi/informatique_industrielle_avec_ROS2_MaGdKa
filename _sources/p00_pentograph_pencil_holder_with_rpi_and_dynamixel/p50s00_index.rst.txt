@@ -47,4 +47,4 @@ Vous serez évalué sur la qualité de la documentation de votre projet et le pi
    p50s04_ROS2
    p50s03_urdf
    p50s06_dynamixel
-   P50s07_rviz
+   p50s07_rviz
