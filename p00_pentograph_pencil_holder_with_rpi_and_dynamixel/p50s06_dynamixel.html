@@ -113,19 +113,15 @@
 <h2>Branchement des moteurs<a class="headerlink" href="#branchement-des-moteurs" title="Lien vers cette rubrique"></a></h2>
 <p>Les moteurs Dynamixel sont connectés en série (<strong>daisy chain</strong>). Chaque moteur possède une adresse (ID) unique pour être contrôlé séparément.</p>
 <ul class="simple">
-<li><p><strong>Interface</strong> : La communication entre le Raspberry Pi (ou PC) et les moteurs passe par un convertisseur USB <strong>U2D2</strong>.</p></li>
+<li><p><strong>Interface</strong> : La communication entre le PC et les moteurs passe par un convertisseur USB <strong>U2D2</strong>.</p></li>
 <li><p><strong>Alimentation</strong> : Les moteurs AX-12A nécessitent une alimentation externe de <strong>12V</strong>.</p></li>
 </ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Assurez-vous que les câbles de données et de puissance sont bien verrouillés. Un mauvais contact sur un câble de la chaîne peut empêcher la détection des moteurs suivants.</p>
-</div>
 </section>
 <section id="detection-via-dynamixel-wizard-2-0">
 <h2>Détection via Dynamixel Wizard 2.0<a class="headerlink" href="#detection-via-dynamixel-wizard-2-0" title="Lien vers cette rubrique"></a></h2>
 <p>Avant de lancer un script, utilisez le logiciel <a class="reference external" href="https://emanual.robotis.com/docs/en/software/dynamixel/dynamixel_wizard2/">Dynamixel Wizard 2.0</a> pour valider l’état du bus.</p>
 <ol class="arabic simple">
-<li><p>Sélectionnez le port (ex: <code class="docutils literal notranslate"><span class="pre">COM4</span></code> ou <code class="docutils literal notranslate"><span class="pre">/dev/ttyUSB0</span></code>).</p></li>
+<li><p>Sélectionnez le port (ex: <code class="docutils literal notranslate"><span class="pre">COM4</span></code> ou <code class="docutils literal notranslate"><span class="pre">/dev/ttyUSB0</span></code> pour la raspberry).</p></li>
 <li><p>Configurez le protocole sur <strong>1.0</strong> (spécifique aux AX-12A).</p></li>
 <li><p>Lancez le <strong>Scan</strong>.</p></li>
 </ol>
@@ -145,7 +141,7 @@
 </section>
 <section id="configuration-et-adaptation-du-code">
 <h3>Configuration et adaptation du code<a class="headerlink" href="#configuration-et-adaptation-du-code" title="Lien vers cette rubrique"></a></h3>
-<p>Pour que le code fonctionne avec des moteurs AX-12A, il est crucial d’adapter les adresses de la table de contrôle (RAM Area). Contrairement aux séries X, les AX-12A utilisent les constantes suivantes :</p>
+<p>Pour que le code fonctionne avec des moteurs AX-12A, il est crucial d’adapter les adresses de la table de contrôle. Contrairement aux séries X, les AX-12A utilisent les constantes suivantes :</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Adresses de la table de contrôle (Datasheet AX-12A)</span>
 <span class="n">ADDR_TORQUE_ENABLE</span>    <span class="o">=</span> <span class="mi">24</span>  <span class="c1"># Activation du couple</span>
 <span class="n">ADDR_GOAL_POSITION</span>    <span class="o">=</span> <span class="mi">30</span>  <span class="c1"># Position cible (0-1023)</span>
@@ -160,7 +156,7 @@
 <section id="explications-des-variables-a-modifier">
 <h4>Explications des variables à modifier :<a class="headerlink" href="#explications-des-variables-a-modifier" title="Lien vers cette rubrique"></a></h4>
 <ul class="simple">
-<li><p><strong>BAUDRATE</strong> : Si vos moteurs ne répondent pas, vérifiez si cette valeur est bien celle configurée dans le Wizard (souvent 115200 ou 1000000).</p></li>
+<li><p><strong>BAUDRATE</strong> : Vérifiez si cette valeur est bien celle configurée dans le Wizard (souvent 115200 ou 1000000).</p></li>
 <li><p><strong>DEVICENAME</strong> : Sous Windows, utilisez le port COM identifié. Sous Linux/Raspberry Pi, utilisez le chemin du port série (généralement <code class="docutils literal notranslate"><span class="pre">/dev/ttyUSB0</span></code>).</p></li>
 <li><p><strong>ADDR_GOAL_POSITION</strong> : Indique au SDK où écrire l’ordre de mouvement. Sur AX-12A, il s’agit de 2 octets (Write2Byte).</p></li>
 </ul>
@@ -181,7 +177,11 @@
 <li><p><a class="reference external" href="https://emanual.robotis.com/docs/en/dxl/ax/ax-12a/">Datasheet officielle AX-12A</a></p></li>
 <li><p><a class="reference external" href="https://emanual.robotis.com/docs/en/parts/interface/u2d2/">Documentation interface U2D2</a></p></li>
 </ul>
-</section>
+<p>Voici une vidéo montrant le fonctionnement des servomoteurs Dynamixel AX-12A sur le pentographe :</p>
+<video controls width="560" height="315">
+  <source src="resources/img/Video_Pemtographe.mp4" type="video/mp4">
+  Votre navigateur ne supporte pas la balise vidéo.
+</video></section>
 </section>
 
 
