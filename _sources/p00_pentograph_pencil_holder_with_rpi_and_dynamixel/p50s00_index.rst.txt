@@ -2,15 +2,7 @@
 Pantographe de dessin robotisé avec Raspberry Pi et ROS2
 #########################################################
 
-.. toctree::
-   :maxdepth: 2
 
-   p50s01_material_description
-   p50s02_mechanical_description
-   p50s03_urdf
-   p50s04_ROS2
-   p50s05_ubuntu
-   p50s06_dynamixel
 
 .. figure:: resources/img/real_system_photo.png
    :align: center
@@ -45,3 +37,13 @@ Dans ce projet un canevas de documentation est fourni. Vous devrez le compléter
 Vous soumettrez votre travail sous forme de push request à ce projet.
 
 Vous serez évalué sur la qualité de la documentation de votre projet et le pilotage du pentographe réel.
+
+.. toctree::
+   :maxdepth: 2
+
+   p50s01_material_description
+   p50s02_mechanical_description
+   p50s05_ubuntu
+   p50s04_ROS2
+   p50s03_urdf
+   p50s06_dynamixel
