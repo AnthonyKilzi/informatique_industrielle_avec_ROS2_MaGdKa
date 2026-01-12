@@ -11,7 +11,6 @@ Du matériel informatique classique (écran, clavier et souris) est
 également nécessaire afin d’interagir avec la Raspberry Pi lors de
 l’installation.
 
----
 
 Installation de Raspberry Pi Imager
 -----------------------------------
@@ -27,7 +26,7 @@ commande suivante permet d’installer et de lancer l’outil :
    sudo apt install rpi-imager
    rpi-imager
 
----
+
 
 Choix de l’image Ubuntu
 -----------------------
@@ -44,34 +43,14 @@ l’écriture de l’image sur la carte micro-SD.
 La durée de cette étape dépend principalement de la vitesse de la
 connexion Internet.
 
----
+
 
 Premier démarrage
 -----------------
 
 Une fois l’écriture terminée, la Raspberry Pi doit être redémarrée.
 Le système démarre alors automatiquement sous **Ubuntu**.
-
----
-
-Tentative de partitionnement de la carte micro-SD
--------------------------------------------------
-
-Afin de permettre à chaque groupe de travail d’effectuer ses propres
-manipulations, une tentative de partitionnement de la carte micro-SD a
-été réalisée à l’aide de l’outil **GParted**.
-
-Installation et lancement de GParted :
-
-.. code-block:: bash
-
-   sudo apt-get install gparted
-   sudo gparted
-
-Toutefois, après plusieurs essais, cette méthode de partitionnement ne
-s’est pas révélée fonctionnelle et n’a pas été retenue pour la suite
-du projet.
-
+Le système est maintenant prêt pour l’installation de ROS 2 Humble 
 ---
 
 Référence
@@ -82,3 +61,4 @@ d’exploitation sur Raspberry Pi, se référer à la documentation
 officielle :
 
 - https://www.raspberrypi.com/documentation/computers/getting-started.html#raspberry-pi-imager
+
