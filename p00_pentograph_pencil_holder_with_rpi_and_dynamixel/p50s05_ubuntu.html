@@ -68,7 +68,6 @@
 <li class="toctree-l4"><a class="reference internal" href="#installation-de-raspberry-pi-imager">Installation de Raspberry Pi Imager</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#choix-de-limage-ubuntu">Choix de l’image Ubuntu</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#premier-demarrage">Premier démarrage</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#tentative-de-partitionnement-de-la-carte-micro-sd">Tentative de partitionnement de la carte micro-SD</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#reference">Référence</a></li>
 </ul>
 </li>
@@ -117,7 +116,6 @@ Ubuntu.
 Du matériel informatique classique (écran, clavier et souris) est
 également nécessaire afin d’interagir avec la Raspberry Pi lors de
 l’installation.</p>
-<p>—</p>
 <section id="installation-de-raspberry-pi-imager">
 <h2>Installation de Raspberry Pi Imager<a class="headerlink" href="#installation-de-raspberry-pi-imager" title="Lien vers cette rubrique"></a></h2>
 <p>L’outil <strong>Raspberry Pi Imager</strong> est utilisé pour flasher l’image
@@ -128,7 +126,6 @@ commande suivante permet d’installer et de lancer l’outil :</p>
 rpi-imager
 </pre></div>
 </div>
-<p>—</p>
 </section>
 <section id="choix-de-limage-ubuntu">
 <h2>Choix de l’image Ubuntu<a class="headerlink" href="#choix-de-limage-ubuntu" title="Lien vers cette rubrique"></a></h2>
@@ -143,28 +140,13 @@ sélectionnés :</p>
 l’écriture de l’image sur la carte micro-SD.
 La durée de cette étape dépend principalement de la vitesse de la
 connexion Internet.</p>
-<p>—</p>
 </section>
 <section id="premier-demarrage">
 <h2>Premier démarrage<a class="headerlink" href="#premier-demarrage" title="Lien vers cette rubrique"></a></h2>
 <p>Une fois l’écriture terminée, la Raspberry Pi doit être redémarrée.
-Le système démarre alors automatiquement sous <strong>Ubuntu</strong>.</p>
-<p>—</p>
-</section>
-<section id="tentative-de-partitionnement-de-la-carte-micro-sd">
-<h2>Tentative de partitionnement de la carte micro-SD<a class="headerlink" href="#tentative-de-partitionnement-de-la-carte-micro-sd" title="Lien vers cette rubrique"></a></h2>
-<p>Afin de permettre à chaque groupe de travail d’effectuer ses propres
-manipulations, une tentative de partitionnement de la carte micro-SD a
-été réalisée à l’aide de l’outil <strong>GParted</strong>.</p>
-<p>Installation et lancement de GParted :</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>gparted
-sudo<span class="w"> </span>gparted
-</pre></div>
-</div>
-<p>Toutefois, après plusieurs essais, cette méthode de partitionnement ne
-s’est pas révélée fonctionnelle et n’a pas été retenue pour la suite
-du projet.</p>
-<p>—</p>
+Le système démarre alors automatiquement sous <strong>Ubuntu</strong>.
+Le système est maintenant prêt pour l’installation de ROS 2 Humble
+—</p>
 </section>
 <section id="reference">
 <h2>Référence<a class="headerlink" href="#reference" title="Lien vers cette rubrique"></a></h2>
