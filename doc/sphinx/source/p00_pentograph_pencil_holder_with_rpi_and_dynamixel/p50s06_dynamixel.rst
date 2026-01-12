@@ -10,11 +10,10 @@ Branchement des moteurs
 
 Les moteurs Dynamixel sont connectés en série (**daisy chain**). Chaque moteur possède une adresse (ID) unique pour être contrôlé séparément. 
 
-* **Interface** : La communication entre le Raspberry Pi (ou PC) et les moteurs passe par un convertisseur USB **U2D2**.
+* **Interface** : La communication entre le PC et les moteurs passe par un convertisseur USB **U2D2**.
 * **Alimentation** : Les moteurs AX-12A nécessitent une alimentation externe de **12V**.
 
-.. note::
-   Assurez-vous que les câbles de données et de puissance sont bien verrouillés. Un mauvais contact sur un câble de la chaîne peut empêcher la détection des moteurs suivants.
+
 
 ********************************************************
 Détection via Dynamixel Wizard 2.0
@@ -22,7 +21,7 @@ Détection via Dynamixel Wizard 2.0
 
 Avant de lancer un script, utilisez le logiciel `Dynamixel Wizard 2.0 <https://emanual.robotis.com/docs/en/software/dynamixel/dynamixel_wizard2/>`_ pour valider l'état du bus.
 
-1. Sélectionnez le port (ex: ``COM4`` ou ``/dev/ttyUSB0``).
+1. Sélectionnez le port (ex: ``COM4`` ou ``/dev/ttyUSB0`` pour la raspberry).
 2. Configurez le protocole sur **1.0** (spécifique aux AX-12A).
 3. Lancez le **Scan**.
 
@@ -47,7 +46,7 @@ Installation
 Configuration et adaptation du code
 -----------------------------------
 
-Pour que le code fonctionne avec des moteurs AX-12A, il est crucial d'adapter les adresses de la table de contrôle (RAM Area). Contrairement aux séries X, les AX-12A utilisent les constantes suivantes :
+Pour que le code fonctionne avec des moteurs AX-12A, il est crucial d'adapter les adresses de la table de contrôle. Contrairement aux séries X, les AX-12A utilisent les constantes suivantes :
 
 .. code-block:: python
 
@@ -64,7 +63,7 @@ Pour que le code fonctionne avec des moteurs AX-12A, il est crucial d'adapter le
 Explications des variables à modifier :
 +++++++++++++++++++++++++++++++++++++++
 
-* **BAUDRATE** : Si vos moteurs ne répondent pas, vérifiez si cette valeur est bien celle configurée dans le Wizard (souvent 115200 ou 1000000).
+* **BAUDRATE** : Vérifiez si cette valeur est bien celle configurée dans le Wizard (souvent 115200 ou 1000000).
 * **DEVICENAME** : Sous Windows, utilisez le port COM identifié. Sous Linux/Raspberry Pi, utilisez le chemin du port série (généralement ``/dev/ttyUSB0``).
 * **ADDR_GOAL_POSITION** : Indique au SDK où écrire l'ordre de mouvement. Sur AX-12A, il s'agit de 2 octets (Write2Byte).
 
@@ -89,3 +88,16 @@ Ressources supplémentaires
 
 * `Datasheet officielle AX-12A <https://emanual.robotis.com/docs/en/dxl/ax/ax-12a/>`_
 * `Documentation interface U2D2 <https://emanual.robotis.com/docs/en/parts/interface/u2d2/>`_
+
+********************************************************
+Vidéo de démonstration
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+Voici une vidéo montrant le fonctionnement des servomoteurs Dynamixel AX-12A sur le pentographe :
+
+.. raw:: html
+
+   <video controls width="560" height="315">
+     <source src="resources/img/Video_Pemtographe.mp4" type="video/mp4">
+     Votre navigateur ne supporte pas la balise vidéo.
+   </video>
