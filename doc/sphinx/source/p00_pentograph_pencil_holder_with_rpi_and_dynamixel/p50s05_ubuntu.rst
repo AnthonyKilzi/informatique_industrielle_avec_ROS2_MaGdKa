@@ -1,44 +1,84 @@
-###################################################
- Installation de ROS2 sur la Rasberry Pi 5
-###################################################
+Installation d’Ubuntu sur la Raspberry Pi 5
+===========================================
 
-Puisque nous avons installé **Ubuntu version 24.04**, il faut installer la version **Jazzy** de **ROS2**. Pour cela, il faut suivre les étapes décrites dans cette documentation_ en prenant soin de remplacer par **Jazzy** là où il est nécessaire.
+Cette section décrit la procédure d’installation du système
+d’exploitation **Ubuntu** sur une **Raspberry Pi 5**.
 
-Voici la liste des commandes à effectuer :
+Dans notre cas, nous disposons d’une **carte micro-SD** initialement
+configurée avec **Raspberry Pi OS**, qui sera utilisée pour installer
+Ubuntu.  
+Du matériel informatique classique (écran, clavier et souris) est
+également nécessaire afin d’interagir avec la Raspberry Pi lors de
+l’installation.
+
+---
+
+Installation de Raspberry Pi Imager
+-----------------------------------
+
+L’outil **Raspberry Pi Imager** est utilisé pour flasher l’image
+d’Ubuntu sur la carte micro-SD.
+
+Puisque l’installation est réalisée depuis **Raspberry Pi OS**, la
+commande suivante permet d’installer et de lancer l’outil :
 
 .. code-block:: bash
-    
-    locale  # check for UTF-8
 
-    sudo apt update && sudo apt install locales
-    sudo locale-gen en_US en_US.UTF-8
-    sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
-    export LANG=en_US.UTF-8
+   sudo apt install rpi-imager
+   rpi-imager
 
-    locale  # verify settings
+---
 
-    sudo apt install software-properties-common
-    sudo add-apt-repository universe
+Choix de l’image Ubuntu
+-----------------------
 
-    sudo apt update && sudo apt install curl -y
-    sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
+Une fois Raspberry Pi Imager lancé, les éléments suivants doivent être
+sélectionnés :
 
-    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(. /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
+- Le modèle de carte : **Raspberry Pi 5**
+- Le système d’exploitation : **Ubuntu 24.04**
+- Le périphérique de stockage : **carte micro-SD (par défaut)**
 
-    sudo apt update
+Après validation, le logiciel procède au téléchargement et à
+l’écriture de l’image sur la carte micro-SD.  
+La durée de cette étape dépend principalement de la vitesse de la
+connexion Internet.
 
-    sudo apt upgrade
+---
 
-    sudo apt install ros-humble-desktop
+Premier démarrage
+-----------------
 
-    sudo apt install ros-humble-ros-base
+Une fois l’écriture terminée, la Raspberry Pi doit être redémarrée.
+Le système démarre alors automatiquement sous **Ubuntu**.
 
-    source /opt/ros/rolling/setup.bash
+---
 
-Après installation, on teste le bon fonctionnement de **ROS2** à l'aide de **TurtleSim** dans un nouveau terminal :
+Tentative de partitionnement de la carte micro-SD
+-------------------------------------------------
 
-.. figure:: resources/img/TurtleSim.png
-    :width: 50%
-    :align: center
+Afin de permettre à chaque groupe de travail d’effectuer ses propres
+manipulations, une tentative de partitionnement de la carte micro-SD a
+été réalisée à l’aide de l’outil **GParted**.
 
-.. _documentation: https://ros2docs.robook.org/rolling/Installation/Ubuntu-Install-Debs.html
+Installation et lancement de GParted :
+
+.. code-block:: bash
+
+   sudo apt-get install gparted
+   sudo gparted
+
+Toutefois, après plusieurs essais, cette méthode de partitionnement ne
+s’est pas révélée fonctionnelle et n’a pas été retenue pour la suite
+du projet.
+
+---
+
+Référence
+---------
+
+Pour plus de détails concernant l’installation des systèmes
+d’exploitation sur Raspberry Pi, se référer à la documentation
+officielle :
+
+- https://www.raspberrypi.com/documentation/computers/getting-started.html#raspberry-pi-imager
