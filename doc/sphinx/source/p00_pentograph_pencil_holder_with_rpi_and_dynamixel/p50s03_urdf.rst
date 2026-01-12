@@ -51,16 +51,15 @@ Création du fichier URDF
 =========================
 
 Le fichier URDF du pantographe est disponible en ressource :
-**ERREUR CRITIQUE : Alignement des maillages 3D et fichiers URDF**
+**ERREUR : Placement des repères au sein des fichiers**
 
 Les fichiers URDF référencent les maillages 3D par rapport au repère local de chaque lien. Pour garantir la validité de la simulation, il est impératif de vérifier la position des repères (frames) des fichiers 3D.
 
-**Pourquoi est-ce crucial ?**
-Une erreur de référencement provoque des décalages visuels et fausse totalement le calcul des masses et des matrices d'inertie, rendant la simulation physique instable ou erronée.
+Une erreur de référencement provoque des décalages visuels ce qui donne des repères compliqué à utilisé car il ne sont pas centré sur une des deux liaisons.
 
 **Action corrective requise :**
 * **Réexporter les fichiers 3D individuellement.**
-* **Référencement local :** Chaque pièce doit être exportée par rapport à son propre repère d'origine (repère pièce) et non par rapport au repère global de l'assemblage.
+* **Référencement local :** Chaque pièce doit être exportée par rapport à son propre repère d'origine placé sur une de ses liaisons.
 
 Pour définir le fichier URDF, nous avons repris la structure du fichier URDF du SCARA disponible dans le dépôt github. Ensuite, il faut changer les parties correspondantes aux liens et aux joints.
 
