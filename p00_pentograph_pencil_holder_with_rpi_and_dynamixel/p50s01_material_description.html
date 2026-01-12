@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Description du matériel de la plateforme pantographe &mdash; Documentation Cours d&#39;Informatique Industrielle avec ROS2 1.0.0</title>
+  <title>Description du Matériel de notre maquette Pantographe &mdash; Documentation Cours d&#39;Informatique Industrielle avec ROS2 1.0.0</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
@@ -61,7 +61,19 @@
 <p class="caption" role="heading"><span class="caption-text">Travaux Pratiques</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="p50s00_index.html">Pantographe de dessin robotisé avec Raspberry Pi et ROS2</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Description du matériel de la plateforme pantographe</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Description du Matériel de notre maquette Pantographe</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#unite-de-controle-et-gestion-thermique">1. Unité de Contrôle et Gestion Thermique</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#raspberry-pi-5-raspberry-pi-5-datasheet">Raspberry Pi 5 (Raspberry Pi 5 datasheet)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#refroidissement-a-l-aide-d-un-ventilateur">Refroidissement à l’aide d’un ventilateur</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#solution-de-stockage-haute-performance">2. Solution de Stockage Haute Performance</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#ssd-adata-legend-700-adata-legend-700-datasheet">SSD Adata Legend 700 (Adata Legend 700 datasheet)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#actionneurs">3. Actionneurs</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="p50s02_mechanical_description.html">Description mécanique de la plateforme pantographe</a></li>
 <li class="toctree-l2"><a class="reference internal" href="p50s03_urdf.html">Génération de la description URDF du pantographe</a></li>
 <li class="toctree-l2"><a class="reference internal" href="p50s04_ROS2.html">Installation de ROS2 sur la Rasberry Pi 5</a></li>
@@ -86,7 +98,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="p50s00_index.html">Pantographe de dessin robotisé avec Raspberry Pi et ROS2</a></li>
-      <li class="breadcrumb-item active">Description du matériel de la plateforme pantographe</li>
+      <li class="breadcrumb-item active">Description du Matériel de notre maquette Pantographe</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/p00_pentograph_pencil_holder_with_rpi_and_dynamixel/p50s01_material_description.rst.txt" rel="nofollow"> Afficher la source de la page</a>
       </li>
@@ -96,8 +108,72 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="description-du-materiel-de-la-plateforme-pantographe">
-<h1>Description du matériel de la plateforme pantographe<a class="headerlink" href="#description-du-materiel-de-la-plateforme-pantographe" title="Lien vers cette rubrique"></a></h1>
+  <section id="description-du-materiel-de-notre-maquette-pantographe">
+<h1>Description du Matériel de notre maquette Pantographe<a class="headerlink" href="#description-du-materiel-de-notre-maquette-pantographe" title="Lien vers cette rubrique"></a></h1>
+<p>Dans cette partie nous alons décrire les éléments de la platforme pantographe. Comme vu dans la partie précédente, notre maquette est constitué d’une <strong>Raspberry Pi 5</strong> pour le calcul, un stockage <strong>NVMe haute vitesse</strong> pour la réactivité du système, et des servomoteurs <strong>Dynamixel</strong> pour la partie mécanique.</p>
+<hr class="docutils" />
+<section id="unite-de-controle-et-gestion-thermique">
+<h2>1. Unité de Contrôle et Gestion Thermique<a class="headerlink" href="#unite-de-controle-et-gestion-thermique" title="Lien vers cette rubrique"></a></h2>
+<section id="raspberry-pi-5-raspberry-pi-5-datasheet">
+<h3>Raspberry Pi 5 (<a class="reference external" href="https://www.raspberrypi.com/products/raspberry-pi-5/">Raspberry Pi 5 datasheet</a>)<a class="headerlink" href="#raspberry-pi-5-raspberry-pi-5-datasheet" title="Lien vers cette rubrique"></a></h3>
+<p>C’est l’élément central qui va assurer le traitement des données et le contrôle des moteurs.</p>
+<ul class="simple">
+<li><p>Broadcom BCM2712 2.4GHz quad-core 64-bit Arm Cortex-A76 CPU, with cryptography extensions, 512KB per-core L2 caches and a 2MB shared L3 cache</p></li>
+<li><p>VideoCore VII GPU, supporting OpenGL ES 3.1, Vulkan 1.2</p></li>
+<li><p>4Kp60 HEVC decoder</p></li>
+<li><p>Dual 4Kp60 HDMI® display output with HDR support</p></li>
+<li><p>LPDDR4X-4267 SDRAM (2GB, 4GB, 8GB, and 16GB)</p></li>
+<li><p>Dual-band 802.11ac Wi-Fi®</p></li>
+<li><p>2 × USB 3.0 ports, supporting simultaneous 5Gbps operation</p></li>
+<li><p>2 × USB 2.0 ports</p></li>
+<li><p>5V/5A DC power via USB-C, with Power Delivery support</p></li>
+<li><p>Bluetooth 5.0 / Bluetooth Low Energy (BLE)</p></li>
+<li><p>microSD card slot, with support for high-speed SDR104 mode</p></li>
+<li><p>Gigabit Ethernet, with PoE+ support (requires separate PoE+ HAT)</p></li>
+<li><p>2 × 4-lane MIPI camera/display transceivers</p></li>
+<li><p>PCIe 2.0 x1 interface for fast peripherals (requires separate M.2 HAT or other adapter)</p></li>
+<li><p>Raspberry Pi standard 40-pin header</p></li>
+<li><p>Real-time clock (RTC), powered from external battery</p></li>
+</ul>
+</section>
+<section id="refroidissement-a-l-aide-d-un-ventilateur">
+<h3>Refroidissement à l’aide d’un ventilateur<a class="headerlink" href="#refroidissement-a-l-aide-d-un-ventilateur" title="Lien vers cette rubrique"></a></h3>
+<p>Ensuite, l’utilisaiton d’un ventilateur pour garantir un maintien des performances du processeur :</p>
+<ul class="simple">
+<li><p><strong>Type</strong> : Radiateur en aluminium anodisé avec ventilateur intégré.</p></li>
+<li><p><strong>Voltage d’entrée</strong> : 5V DC (fourni via le port ventilateur dédié sur Raspberry Pi 5)</p></li>
+<li><p><strong>Contrôle</strong> : Gestion automatique par PWM via le port ventilateur dédié.</p></li>
+<li><p><strong>Performance</strong> : 8000 RPM ± 15% et 1.09 CFM(pieds cubes par minute).</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="solution-de-stockage-haute-performance">
+<h2>2. Solution de Stockage Haute Performance<a class="headerlink" href="#solution-de-stockage-haute-performance" title="Lien vers cette rubrique"></a></h2>
+<p>En intégrant un SSD NVMe dans notre maquette, cela permet d’avoir de meilleures performances de stockage en temps réel. Cela améliore donc la réactivité et la fiabilité tout en réduisant les temps de latence.</p>
+<section id="ssd-adata-legend-700-adata-legend-700-datasheet">
+<h3>SSD Adata Legend 700 (<a class="reference external" href="https://www.adata.com/en/consumer/category/ssds/solid-state-drives-legend-700/">Adata Legend 700 datasheet</a>)<a class="headerlink" href="#ssd-adata-legend-700-adata-legend-700-datasheet" title="Lien vers cette rubrique"></a></h3>
+<ul class="simple">
+<li><p><strong>Format</strong> : M.2 2280 sur interface PCIe Gen3 x4.</p></li>
+<li><p><strong>Capacité</strong> : 256 GB.</p></li>
+<li><dl class="simple">
+<dt><strong>Performances</strong> :</dt><dd><ul>
+<li><p><strong>Lecture séquentielle</strong> : Jusqu’à 2000 MB/s.</p></li>
+<li><p><strong>Écriture séquentielle</strong> : Jusqu’à 1600 MB/s.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p><strong>Durabilité</strong> : 480 TBW (<em>Total Bytes Written</em>) et MTBF de 1,5 million d’heures.</p></li>
+<li><p><strong>Température de fonctionnement</strong> : 0°C à 70°C.</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="actionneurs">
+<h2>3. Actionneurs<a class="headerlink" href="#actionneurs" title="Lien vers cette rubrique"></a></h2>
+<p>Le pantographe est articulé par des servomoteurs Dynamixel AX-12A permettant un retour d’information précis. (<a class="reference external" href="https://emanual.robotis.com/docs/en/dxl/ax/ax-12a/">AX-12A Dynamixel datasheet</a>)</p>
+</section>
 </section>
 
 
