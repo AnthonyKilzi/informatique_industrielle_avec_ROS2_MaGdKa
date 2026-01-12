@@ -2,9 +2,9 @@
  Installation de ROS2 sur la Rasberry Pi 5
 ###################################################
 
-Puisque nous avons installé **Ubuntu version 24.04**, il faut installer la version **Jazzy** de **ROS2**. Pour cela, il faut suivre les étapes décrites dans cette documentation_ en prenant soin de remplacer par **Jazzy** là où il est nécessaire.
+Nous avons installé Ubuntu sur le Raspberry Pi 5 dans la section précédente. Maintenant, nous allons installer ROS2 Jazzy. 
 
-Voici la liste des commandes à effectuer :
+Les listes de paquets doivent être mises à jour et les dépendances nécessaires installées :
 
 .. code-block:: bash
     
@@ -35,8 +35,7 @@ Voici la liste des commandes à effectuer :
 
     source /opt/ros/rolling/setup.bash
 
-Après installation, on teste le bon fonctionnement de **ROS2** à l'aide de **TurtleSim** dans un nouveau terminal :
-
+Nous pouvons vérifier l'installation en lançant **TurtleSim** :
 .. figure:: resources/img/TurtleSim.png
     :width: 50%
     :align: center

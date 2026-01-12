@@ -98,8 +98,8 @@
              
   <section id="installation-de-ros2-sur-la-rasberry-pi-5">
 <h1>Installation de ROS2 sur la Rasberry Pi 5<a class="headerlink" href="#installation-de-ros2-sur-la-rasberry-pi-5" title="Lien vers cette rubrique"></a></h1>
-<p>Puisque nous avons installé <strong>Ubuntu version 24.04</strong>, il faut installer la version <strong>Jazzy</strong> de <strong>ROS2</strong>. Pour cela, il faut suivre les étapes décrites dans cette <a class="reference external" href="https://ros2docs.robook.org/rolling/Installation/Ubuntu-Install-Debs.html">documentation</a> en prenant soin de remplacer par <strong>Jazzy</strong> là où il est nécessaire.</p>
-<p>Voici la liste des commandes à effectuer :</p>
+<p>Nous avons installé Ubuntu sur le Raspberry Pi 5 dans la section précédente. Maintenant, nous allons installer ROS2 Jazzy.</p>
+<p>Les listes de paquets doivent être mises à jour et les dépendances nécessaires installées :</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>locale<span class="w">  </span><span class="c1"># check for UTF-8</span>
 
 sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>locales
@@ -128,11 +128,18 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
 <span class="nb">source</span><span class="w"> </span>/opt/ros/rolling/setup.bash
 </pre></div>
 </div>
-<p>Après installation, on teste le bon fonctionnement de <strong>ROS2</strong> à l’aide de <strong>TurtleSim</strong> dans un nouveau terminal :</p>
-<figure class="align-center">
-<a class="reference internal image-reference" href="../_images/TurtleSim.png"><img alt="../_images/TurtleSim.png" src="../_images/TurtleSim.png" style="width: 50%;" />
-</a>
-</figure>
+<p>Nous pouvons vérifier l’installation en lançant <strong>TurtleSim</strong> :
+.. figure:: resources/img/TurtleSim.png</p>
+<blockquote>
+<div><dl class="field-list simple">
+<dt class="field-odd">width<span class="colon">:</span></dt>
+<dd class="field-odd"><p>50%</p>
+</dd>
+<dt class="field-even">align<span class="colon">:</span></dt>
+<dd class="field-even"><p>center</p>
+</dd>
+</dl>
+</div></blockquote>
 </section>
 
 
