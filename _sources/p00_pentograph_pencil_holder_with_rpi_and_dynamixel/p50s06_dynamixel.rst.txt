@@ -3,12 +3,15 @@ Fonctionnement des Servomoteurs Dynamixel AX-12A
 #########################################################
 
 Cette section décrit la procédure complète pour détecter, configurer et contrôler deux servomoteurs AX-12A montés sur la plateforme.
+* `Lien code Github <https://github.com/AnthonyKilzi/informatique_industrielle_avec_ROS2_MaGdKa?tab=readme-ov-file>`_
 
 ********************************************************
 Branchement des moteurs
 ********************************************************
 
 Les moteurs Dynamixel sont connectés en série (**daisy chain**). Chaque moteur possède une adresse (ID) unique pour être contrôlé séparément. 
+
+
 
 * **Interface** : La communication entre le PC et les moteurs passe par un convertisseur USB **U2D2**.
 .. image:: resources/img/U2D2_hubBoard.png
@@ -30,6 +33,7 @@ Il faut ensuite mettre sous tension grace à l'interrupteur situé sur le côté
 ********************************************************
 Détection via Dynamixel Wizard 2.0
 ********************************************************
+
 
 Avant de lancer un script, utilisez le logiciel `Dynamixel Wizard 2.0 <https://emanual.robotis.com/docs/en/software/dynamixel/dynamixel_wizard2/>`_ pour valider l'état du bus.
 
